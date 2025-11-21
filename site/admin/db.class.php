@@ -4,7 +4,7 @@ class db
 {
     private $host = 'localhost';
     private $user = 'root';
-    private $password = '#Tiago0424'; 
+    private $password = ''; 
     private $port = '3306';
     private $dbname = 'antiquarias'; 
     private $table_name;
