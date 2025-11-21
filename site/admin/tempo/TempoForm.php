@@ -1,6 +1,6 @@
 <?php
-include '../header.php';
-include '../database/db.class.php';
+include "../../base/header.php";
+include "../db.class.php";
 
 $db = new db('sala');
 $data = null;
@@ -78,5 +78,5 @@ if (!empty($_GET['id'])) {
 
 </form>
 
-<?php include '../footer.php';
+<?php include "../../base/footer.php"; ?>
 ?>

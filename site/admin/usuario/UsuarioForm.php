@@ -1,11 +1,9 @@
 <?php
-include '../header.php';
-include '../database/db.class.php';
+include "../../base/header.php";
+include "../db.class.php";
 
 $db = new db('usuario');
 $data = null;
-
-
 //var_dump($modelos);
 //exit;
 
@@ -90,5 +88,5 @@ if (!empty($_GET['id'])) {
 
 </form>
 
-<?php include '../footer.php';
+<?php include "../../base/footer.php"; ?>
 ?>
