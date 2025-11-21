@@ -1,6 +1,6 @@
 <?php
-include "../header.php";
-include "../db.class.php";
+include "./header.php";
+include "./db.class.php";
 
 
 $db = new db('playlist');
@@ -83,5 +83,5 @@ if (!empty($_POST)) {
 
 
 <?php
-include "../footer.php"; ?>
+include "./footer.php"; ?>
 ?>

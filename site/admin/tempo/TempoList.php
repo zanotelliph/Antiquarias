@@ -1,6 +1,6 @@
 <?php
-include "../header.php";
-include "../db.class.php";
+include "./header.php";
+include "./db.class.php";
 
 $db = new db('tempo');
 //var_dump($dados);
@@ -81,5 +81,5 @@ if (!empty($_POST)) {
 </div>
 
 <?php
-include "../footer.php"; ?>
+include "./footer.php"; ?>
 ?>

@@ -1,9 +1,9 @@
 <?php
 
-include "./header.php";
-include "./db.class.php";
+include "./site/admin/header.php";
+include "./site/admin/db.class.php";
 
-    $db = new db("user");
+    $db = new db("index");
     $db->checkLogin();
 ?>
 
@@ -212,5 +212,5 @@ iframe {
 </div>
 
 <?php
-include "./footer.php";
+include "./site/admin/footer.php";
 ?>

@@ -1,6 +1,6 @@
 <?php
-include "../header.php";
-include "../db.class.php";
+include "./header.php";
+include "./db.class.php";
 
 $db = new db('tempo');
 $data = null;
@@ -67,5 +67,5 @@ if (!empty($_GET['id'])) {
 
 </form>
 
-<?php include "../footer.php"; ?>
+<?php include "./footer.php"; ?>
 ?>
