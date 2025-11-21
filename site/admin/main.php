@@ -2,7 +2,7 @@
 include './header.php';
 include './db.class.php';
 
-$db = new db('usuario');
+$db = new db('usuario', 'idusuarios');
 $db->checkLogin();
 ?>
 
@@ -19,8 +19,8 @@ $db->checkLogin();
                     <p class="card-text">Gerencie o acesso a dados dos clientes.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./usuario/UsuarioList.php" class="btn btn-primary">Gerenciar Usuários</a>
-                        <a href="./usuario/UsuarioForm.php" class="btn btn-outline-primary">Novo Usuário</a>
+                        <a href="/site/admin/usuario/UsuarioList.php" class="btn btn-primary">Gerenciar Usuários</a>
+                        <a href="/site/admin/usuario/UsuarioForm.php" class="btn btn-outline-primary">Novo Usuário</a>
                     </div>
                 </div>
             </div>
@@ -30,11 +30,11 @@ $db->checkLogin();
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-warning border-4">
                     <h5 class="card-title text-warning fw-bold">Playlists</h5>
-                    <p class="card-text">Cadastre Playlists novas .</p>
+                    <p class="card-text">Cadastre Playlists novas.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./playlist/PlaylistList.php" class="btn btn-warning">Gerenciar playlists</a>
-                        <a href="./playlist/PlaylistForm.php" class="btn btn-outline-warning">Nova playlist</a>
+                        <a href="/site/admin/playlist/PlaylistList.php" class="btn btn-warning">Gerenciar playlists</a>
+                        <a href="/site/admin/playlist/PlaylistForm.php" class="btn btn-outline-warning">Nova playlist</a>
                     </div>
                 </div>
             </div>
@@ -47,8 +47,8 @@ $db->checkLogin();
                     <p class="card-text">Gerencie as salas</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./sala/SalaList.php" class="btn btn-success">Gerenciar salas</a>
-                        <a href="./sala/SalaForm.php" class="btn btn-outline-success">Responder</a>
+                        <a href="/site/admin/sala/SalaList.php" class="btn btn-success">Gerenciar salas</a>
+                        <a href="/site/admin/sala/SalaForm.php" class="btn btn-outline-success">Responder</a>
                     </div>
                 </div>
             </div>
@@ -58,11 +58,24 @@ $db->checkLogin();
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-success border-4">
                     <h5 class="card-title text-success fw-bold">Materiais</h5>
-                    <p class="card-text">Gerencie as Materiais</p>
+                    <p class="card-text">Gerencie os Materiais</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./Material/MaterialList.php" class="btn btn-success">Gerenciar materiais</a>
-                        <a href="./Material/MaterialForm.php" class="btn btn-outline-success">Nova material</a>
+                        <a href="/site/admin/material/MaterialList.php" class="btn btn-success">Gerenciar materiais</a>
+                        <a href="/site/admin/material/MaterialForm.php" class="btn btn-outline-success">Novo material</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body border-start border-info border-4">
+                    <h5 class="card-title text-info fw-bold">Tempo</h5>
+                    <p class="card-text">Gerencie os horários</p>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="/site/admin/tempo/TempoList.php" class="btn btn-info">Gerenciar Tempo</a>
                     </div>
                 </div>
             </div>

@@ -1,92 +1,88 @@
-<?php
-include "./header.php";
-include "./db.class.php";
+    <?php
+    include "../header.php";
+    include "../db.class.php";
 
-$db = new db('usuario');
-$data = null;
-//var_dump($modelos);
-//exit;
+    $db = new db('usuario', 'idusuarios');
+    $data = null;
 
-if (!empty($_POST)) { 
-    try {
-        $errors = [];
-
-        if (empty($_POST['nome'])) {
-            $errors[] = 'O nome é obrigatório';
-        }
-
-        if (empty($_POST['telefone'])) {
-            $errors[] = 'O telefone é obrigatório';
-        }
-        if (empty($_POST['email'])) {
-            $errors[] = 'O email é obrigatório';
-        }
-         if (empty($_POST['login'])) {
-            $errors[] = 'O login é obrigatório';
-        }
-         if (empty($_POST['senha'])) {
-            $errors[] = 'A senha é obrigatória';
-        }
-        
-        echo "
-            <script>
-                setTimeout(() => window.location.href = 'UsuarioList.php', 2000);
-            </script>
-        ";
-
-    } catch (Exception $e) {
-
-        var_dump($errors, $e->getMessage());
-        exit();
+    if (!empty($_GET['id'])) {
+        $data = $db->find($_GET['id']);
     }
-}
 
-if (!empty($_GET['id'])) {
-    $data = $db->find($_GET['id']);
-    
-}
-?>
+    if (!empty($_POST)) { 
+        try {
+            if (empty($_POST['nome']) || empty($_POST['telefone']) || empty($_POST['email']) || empty($_POST['login'])) {
+                echo "<div class='alert alert-danger'>Preencha todos os campos obrigatórios!</div>";
+            } else {
+                
+                if (!empty($_POST['senha'])) {
+                    $_POST['senha'] = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+                } else {
+                    unset($_POST['senha']);
+                }
 
-<h3>Adicionando dados de usuário:</h3>
-<form action="UsuarioForm.php" method="post">
-    <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
+                if (!empty($_POST['idusuarios'])) {
+                    $db->update($_POST);
+                } else {
+                    if(empty($_POST['senha'])) {
+                        echo "<div class='alert alert-danger'>A senha é obrigatória para novos usuários!</div>";
+                        exit;
+                    }
+                    $db->store($_POST);
+                }
 
-    <div class="row">
-        <div class="col-4">
-            <label for="" class="form-label">Nome</label>
-            <input class="form-control" type="text" name="nome" value="<?= $data->nome ??
-                '' ?>">
-        </div>
-    <div class="col-4">
-            <label for="" class="form-label">Telefone </label>
-            <input class="form-control" type="text" name="telefone" value="<?= $data->telefone ??
-                '' ?>">
-        </div>
-        <div class="col-4">
-            <label for="" class="form-label">Email</label>
-            <input class="form-control" type="text" name="email" value="<?= $data->email ??
-                '' ?>">
-        </div>
-        <div class="col-4">
-            <label for="" class="form-label">Login</label>
-            <input class="form-control" type="text" name="login" value="<?= $data->login ??
-                '' ?>">
-        </div>
-        <div class="col-4">
-            <label for="" class="form-label">Senha</label>
-            <input class="form-control" type="password" name="senha" value="<?= $data->senha ??
-                '' ?>">
-        </div>
+                header('Location: UsuarioList.php');
+                exit;
+            }
+
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+            exit();
+        }
+    }
+    ?>
+
+    <div class="container mt-4">
+        <h3><?= !empty($data) ? 'Editar' : 'Novo' ?> Usuário:</h3>
+        
+        <form action="UsuarioForm.php" method="post">
+            <input type="hidden" name="idusuarios" value="<?= $data->idusuarios ?? '' ?>">
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Nome</label>
+                    <input class="form-control" type="text" name="nome" value="<?= $data->nome ?? '' ?>" required>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label">Telefone</label>
+                    <input class="form-control" type="text" name="telefone" value="<?= $data->telefone ?? '' ?>" required>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input class="form-control" type="email" name="email" value="<?= $data->email ?? '' ?>" required>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label">Login</label>
+                    <input class="form-control" type="text" name="login" value="<?= $data->login ?? '' ?>" required>
+                </div>
+                
+                <div class="col-md-12">
+                    <label class="form-label">Senha <?= !empty($data) ? '(Deixe em branco para manter a atual)' : '' ?></label>
+                    <input class="form-control" type="password" name="senha">
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <a href="./UsuarioList.php" class="btn btn-primary">Voltar</a>
+                </div>
+            </div>
+
+        </form>
     </div>
 
-    <div class="row">
-        <div class="col mt-4">
-            <button type="submit" class="btn btn-success">Salvar</button>
-            <a href="./UsuarioList.php" class="btn btn-primary">Voltar</a>
-        </div>
-    </div>
-
-</form>
-
-<?php include "./footer.php"; ?>
-?>
+    <?php include "../footer.php"; ?>

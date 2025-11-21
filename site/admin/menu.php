@@ -1,9 +1,6 @@
 <?php
 include './header.php';
 include './db.class.php';
-
-$db = new db('menu');
-$db->checkLogin();
 ?>
 
 <div class="container mt-5">
@@ -19,8 +16,8 @@ $db->checkLogin();
                     <p class="card-text">Gerencie o acesso a dados dos clientes.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./usuario/UsuarioList.php" class="btn btn-primary">Gerenciar Usuários</a>
-                        <a href="./usuario/UsuarioForm.php" class="btn btn-outline-primary">Novo Usuário</a>
+                        <a href="/site/admin/usuario/UsuarioList.php" class="btn btn-primary">Gerenciar Usuários</a>
+                        <a href="/site/admin/usuario/UsuarioForm.php" class="btn btn-outline-primary">Novo Usuário</a>
                     </div>
                 </div>
             </div>
@@ -45,8 +42,8 @@ $db->checkLogin();
                     <p class="card-text">Gerencie as salas</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./sala/salaList.php" class="btn btn-success">Gerenciar salas</a>
-                        <a href="./sala/salaForm.php" class="btn btn-outline-success">Responder</a>
+                        <a href="/site/admin/sala/SalaList.php" class="btn btn-success">Gerenciar salas</a>
+                        <a href="/site/admin/sala/SalaForm.php" class="btn btn-outline-success">Responder</a>
                     </div>
                 </div>
             </div>
@@ -58,8 +55,8 @@ $db->checkLogin();
                     <p class="card-text">Gerencie os horários de sessão de karaokê</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./tempo/TempoList.php" class="btn btn-success">Gerenciar tempo</a>
-                        <a href="./tempo/TempoForm.php" class="btn btn-outline-success">Gerencie os horários</a>
+                        <a href="/site/admin/tempo/TempoList.php" class="btn btn-success">Gerenciar tempo</a>
+                        <a href="/site/admin/usuario/TempoForm.php" class="btn btn-outline-primary">Novo Tempo</a>
                     </div>
                 </div>
             </div>
@@ -72,7 +69,7 @@ $db->checkLogin();
                     <p class="card-text">Gerencie as materiais</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./material/materialList.php" class="btn btn-success">Gerenciar Materiais</a>
+                        <a href="/site/admin/material/MaterialList.php" class="btn btn-success">Gerenciar Materiais</a>
                     </div>
                 </div>
             </div>
@@ -82,7 +79,7 @@ $db->checkLogin();
     
     <div class="row mt-5">
         <div class="col text-center">
-            <a href="login.php?logout=true" class="btn btn-danger btn-sm">Sair do Sistema</a>
+            <a href="/site/admin/login.php?logout=true" class="btn btn-danger btn-sm">Sair do Sistema</a>
         </div>
     </div>
 </div>

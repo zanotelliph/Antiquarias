@@ -1,10 +1,13 @@
 <?php
-include "./header.php";
-include "./db.class.php";
+include "../header.php";
+include "../db.class.php";
 
-
-$db = new db('material');
+$db = new db('material', 'idmaterial');
 $data = null;
+
+if (!empty($_GET['id'])) {
+    $data = $db->find($_GET['id']);
+}
 
 if (!empty($_POST)) {
     try {
@@ -26,17 +29,16 @@ if (!empty($_POST)) {
             $errors[] = 'A Iluminação é obrigatória';
         }
 
-        if (empty($_POST['id'])) {
-            unset($_POST['id']);
+        if (empty($_POST['idmaterial'])) {
             $db->store($_POST);
-            echo 'Registro Salvo com sucesso!';
+            echo "<div class='alert alert-success'>Registro Salvo com sucesso!</div>";
         } else {
             $db->update($_POST);
-            echo 'Registro Atualizado com sucesso!';
+            echo "<div class='alert alert-success'>Registro Atualizado com sucesso!</div>";
         }
 
         echo "<script>
-                setTimeout(() => window.location.href = 'MaterialList.php', 2000);
+                setTimeout(() => window.location.href = 'MaterialList.php', 1000);
               </script>";
 
     } catch (Exception $e) {
@@ -44,83 +46,78 @@ if (!empty($_POST)) {
         exit();
     }
 }
-
-if (!empty($_GET['id'])) {
-    $data = $db->find($_GET['id']);
-}
 ?>
 
-<h3>Materiais:</h3>
+<div class="container mt-4">
+    <h3>Materiais:</h3>
 
-<form action="MaterialForm.php" method="post">
+    <form action="MaterialForm.php" method="post">
 
-    <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
+        <input type="hidden" name="idmaterial" value="<?= $data->idmaterial ?? '' ?>">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-6">
-            <label class="form-label">Microfone</label>
-            <input class="form-control" list="microfone" type="text" name="microfone"
-                   value="<?= $data->microfone ?? '' ?>">
-            <datalist id="microfone">
-                <option value="Micro Solution MHD">
-                <option value="Micro Solution MHD 3.0">
-                <option value="Shure SM58">
-                <option value="HyperX QuadCast">
-                <option value="Audio-Technica AT2020">
-            </datalist>
+            <div class="col-md-6">
+                <label class="form-label">Microfone</label>
+                <input class="form-control" list="microfone" type="text" name="microfone"
+                    value="<?= $data->microfone ?? '' ?>">
+                <datalist id="microfone">
+                    <option value="Micro Solution MHD">
+                    <option value="Micro Solution MHD 3.0">
+                    <option value="Shure SM58">
+                    <option value="HyperX QuadCast">
+                    <option value="Audio-Technica AT2020">
+                </datalist>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Televisão</label>
+                <input class="form-control" list="tv" type="text" name="tv"
+                    value="<?= $data->tv ?? '' ?>">
+                <datalist id="tv">
+                    <option value="LG">
+                    <option value="Sony">
+                    <option value="Sansung">
+                    <option value="Philco">
+                    <option value="AOC">
+                </datalist>
+            </div>
+
+            <div class="col-md-6 mt-3">
+                <label for="caixa_som" class="form-label">Caixa de Som</label>
+                <input class="form-control" list="caixa_som" type="text" name="caixa_som"
+                    value="<?= $data->caixa_som ?? '' ?>">
+                <datalist id="caixa_som">
+                    <option value="Micro Lux">
+                    <option value="MKD 3.0">
+                    <option value="Shure coconut">
+                    <option value="HMMs">
+                    <option value="Audio Top">
+                </datalist>
+            </div>
+
+            <div class="col-md-6 mt-3">
+                <label for="iluminacao" class="form-label">Iluminação</label>
+                <input class="form-control" list="iluminacao" type="text" name="iluminacao"
+                    value="<?= $data->iluminacao ?? '' ?>">
+                <datalist id="iluminacao">
+                    <option value="Vermelho">
+                    <option value="Azul">
+                    <option value="Verde">
+                    <option value="Roxo">
+                    <option value="Colorido">
+                </datalist>
+            </div>
         </div>
 
-        <div class="col-4">
-            <label class="form-label">Televisão</label>
-            <input class="form-control" list="tv" type="text" name="tv"
-                   value="<?= $data->tv ?? '' ?>">
-            <datalist id="tv">
-                <option value="LG">
-                <option value="Sony">
-                <option value="Sansung">
-                <option value="Philco">
-                <option value="AOC">
-            </datalist>
+        <div class="row">
+            <div class="col mt-4">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="./MaterialList.php" class="btn btn-primary">Voltar</a>
+            </div>
         </div>
 
-        <div class="col-4">
-            <label for="caixa_som" class="form-label">Caixa de Som</label>
-            <input class="form-control" list="caixa_som" type="text" name="caixa_som"
-                   value="<?= $data->caixa_som ?? '' ?>">
-            <datalist id="caixa_som">
-                <option value="Micro Lux">
-                <option value="MKD 3.0">
-                <option value="Shure coconut">
-                <option value="HMMs">
-                <option value="Audio Top">
-            </datalist>
-        </div>
+    </form>
+</div>
 
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-4">
-            <label for="iluminacao" class="form-label">Iluminação</label>
-            <input class="form-control" list="iluminacao" type="text" name="iluminacao"
-                   value="<?= $data->iluminacao ?? '' ?>">
-            <datalist id="iluminacao">
-                <option value="Vermelho">
-                <option value="Azul">
-                <option value="Verde">
-                <option value="Roxo">
-                <option value="Colorido">
-            </datalist>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col mt-4">
-            <button type="submit" class="btn btn-success">Salvar</button>
-            <a href="./MaterialList.php" class="btn btn-primary">Voltar</a>
-        </div>
-    </div>
-
-</form>
-
-<?php include "./footer.php"; ?>
+<?php include "../footer.php"; ?>

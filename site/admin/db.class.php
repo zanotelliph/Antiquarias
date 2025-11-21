@@ -4,14 +4,16 @@ class db
 {
     private $host = 'localhost';
     private $user = 'root';
-    private $password = ''; 
+    private $password = '#Tiago0424'; 
     private $port = '3306';
-    private $dbname = 'Antiquarias'; 
+    private $dbname = 'antiquarias'; 
     private $table_name;
+    private $key_name;
 
-    public function __construct($table_name)
+    public function __construct($table_name, $key_name = 'id')
     {
         $this->table_name = $table_name;
+        $this->key_name = $key_name;
     }
 
     function conn()
@@ -37,6 +39,11 @@ class db
     public function store($dados)
     {
         $conn = $this->conn();
+        
+        if(isset($dados[$this->key_name])){
+            unset($dados[$this->key_name]);
+        }
+
         $flag = 0;
         $arrayDados = [];
 
@@ -72,9 +79,9 @@ class db
 
     public function update($dados)
     {
-        if(!isset($dados['id'])) { return; }
+        if(!isset($dados[$this->key_name])) { return; }
         
-        $id = $dados['id'];
+        $id = $dados[$this->key_name];
         $conn = $this->conn();
         $flag = 0;
         $arrayDados = [];
@@ -82,7 +89,7 @@ class db
         $sql = "UPDATE $this->table_name SET ";
 
         foreach ($dados as $campo => $valor) {
-            if ($campo == 'id') continue; 
+            if ($campo == $this->key_name) continue; 
 
             if ($flag == 0) {
                 $sql .= "$campo = ? ";
@@ -93,7 +100,7 @@ class db
             $arrayDados[] = $valor;
         }
 
-        $sql .= " WHERE id = ?";
+        $sql .= " WHERE $this->key_name = ?";
         $arrayDados[] = $id;
 
         $st = $conn->prepare($sql);
@@ -103,7 +110,7 @@ class db
     public function find($id)
     {
         $conn = $this->conn();
-        $sql = "SELECT * FROM $this->table_name WHERE id = ?";
+        $sql = "SELECT * FROM $this->table_name WHERE $this->key_name = ?";
         $st = $conn->prepare($sql);
         $st->execute([$id]);
         return $st->fetchObject();
@@ -121,14 +128,14 @@ class db
     public function destroy($id)
     {
         $conn = $this->conn();
-        $sql = "DELETE FROM $this->table_name WHERE id = ?";
+        $sql = "DELETE FROM $this->table_name WHERE $this->key_name = ?";
         $st = $conn->prepare($sql);
         $st->execute([$id]);
     }
 
     public function search($dados)
     {
-        $campo = preg_replace('/[^a-zA-Z0-9_]/', '', $dados['tipo']);
+        $campo = preg_replace('/[^a-zA-Z0-9_]/', '', $dados['tipo'] ?? 'nome');
         $valor = $dados['valor'];
 
         $conn = $this->conn();
@@ -161,9 +168,9 @@ class db
             session_start();
         }
 
-        if (empty($_SESSION['login'])) {
+        if (empty($_SESSION['login']) && empty($_SESSION['nome'])) {
             session_destroy();
-            header('Location: ../login.php?error=Sessao Expirada!');
+            header('Location: /login.php?error=Sessao Expirada!');
             exit;
         }
     }

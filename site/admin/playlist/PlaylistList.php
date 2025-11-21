@@ -1,14 +1,14 @@
 <?php
-include "./header.php";
-include "./db.class.php";
+include "../header.php";
+include "../db.class.php";
 
-
-$db = new db('playlist');
-//var_dump($dados);
+$db = new db('playlist', 'idplaylist');
 $db->checkLogin();
 
 if (!empty($_GET['id'])) {
     $db->destroy($_GET['id']);
+    header('Location: PlaylistList.php');
+    exit;
 }
 
 if (!empty($_POST)) {
@@ -16,72 +16,69 @@ if (!empty($_POST)) {
 } else {
     $dados = $db->all();
 }
-
 ?>
 
-<h3>Listagem Usuário</h3>
+<div class="container mt-4">
+    <h3>Listagem de Playlists:</h3>
 
-<form action="./playlistList.php" method="post">
-    <div class="row">
-        <div class="col">
-            <select name="tipo" class="form-select">
-                <option value="nome">#</option>
-                <option value="nome">Titulo</option>
-                <option value="email">Artista</option>
-                <option value="telefone">Modo</option>
-               
-            </select>
+    <form action="./PlaylistList.php" method="post">
+        <div class="row">
+            <div class="col-md-3">
+                <select name="tipo" class="form-select">
+                    <option value="titulo">Título</option>
+                    <option value="artista">Artista</option>
+                    <option value="modo">Modo</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <input type="text" name="valor" placeholder="Pesquisar" class="form-control">
+            </div>
+
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+                <a href="./PlaylistForm.php" class="btn btn-success">Cadastrar</a>
+            </div>
         </div>
+    </form>
 
+    <div class="row mt-4">
         <div class="col">
-            <input type="text" name="valor" placeholder="Pesquisar" class="form-control">
+            <table class="table table-striped table-hover text-white">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Artista</th>
+                        <th scope="col">Modo</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if($dados) {
+                        foreach ($dados as $item) {
+                            echo "<tr>
+                                <th scope='row'>$item->idplaylist</th>
+                                <td>$item->titulo</td>
+                                <td>$item->artista</td>
+                                <td>$item->modo</td>
+                                <td>
+                                    <a href='./PlaylistForm.php?id=$item->idplaylist' class='btn btn-warning btn-sm'>Editar</a>
+                                    <a href='./PlaylistList.php?id=$item->idplaylist'
+                                       onclick='return confirm(\"Deseja realmente excluir?\")'
+                                       class='btn btn-danger btn-sm'>
+                                       Excluir
+                                    </a>
+                                </td>
+                            </tr>";
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
-
-        <div class="col">
-            <button type="submit" class="btn btn-primary">Buscar</button>
-            <a href="./PlaylistForm.php" class="btn btn-success">Cadastrar</a>
-        </div>
-    </div>
-</form>
-
-<div class="row mt-4">
-    <div class="col">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Artista</th>
-                    <th scope="col">Modo</th>
-                   
-                 
-                </tr>
-            </thead>
-            <tbody>
-
-                <?php
-                foreach ($dados as $item) {
-                    echo "<tr>
-                        <th scope='row'>$item->id</th>
-                        <td>$item->Titulo</td>
-                        <td>$item->Artista</td>
-                        <td>$item->Modo</td>
-                        <td><a href='./playlistForm.php?id=$item->id'>Editar</a></td>
-                        <td><a 
-                             href='./playlistList.php?id=$item->id'
-                             onclick='return confirm(\"Deseja Excluir?\")'
-                            >Deletar</a></td>
-                    </tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-
-
     </div>
 </div>
 
-
-<?php
-include "./footer.php"; ?>
-?>
+<?php include "../footer.php"; ?>
