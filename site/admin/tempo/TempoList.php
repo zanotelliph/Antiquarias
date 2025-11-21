@@ -25,7 +25,7 @@ if (!empty($_POST)) {
 <form action="./TempoList.php" method="post">
     <div class="row">
         <div class="col">
-            <select name="sala" class="form-select">
+            <select name="tempo" class="form-select">
                 <option value="horas">Tempo</option>
                 <option value="horario">Data de agendamento</option>
                 

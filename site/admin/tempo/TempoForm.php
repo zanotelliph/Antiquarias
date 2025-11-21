@@ -2,7 +2,7 @@
 include "../../base/header.php";
 include "../db.class.php";
 
-$db = new db('sala');
+$db = new db('tempo');
 $data = null;
 
 
@@ -40,7 +40,7 @@ if (!empty($_GET['id'])) {
 }
 ?>
 
-<h3>Sala:</h3>
+<h3>Sessões:</h3>
 <form action="TempoForm.php" method="post">
     <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 

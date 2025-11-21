@@ -25,12 +25,12 @@ if (!empty($_POST)) {
 <form action="./UsuarioList.php" method="post">
     <div class="row">
         <div class="col">
-            <select name="sala" class="form-select">
-                <option value="quantidade_pessoas">Nome</option>
-                <option value="quantidade_salas">Telefone</option>
-                <option value="quantidade_salas">Email</option>
-                <option value="quantidade_salas">login</option>
-                <option value="quantidade_salas">senha</option>
+            <select name="usuario" class="form-select">
+                <option value="nome">Nome</option>
+                <option value="telefone">Telefone</option>
+                <option value="email">Email</option>
+                <option value="login">login</option>
+                <option value="senha">senha</option>
             </select>
         </div>
 
@@ -40,7 +40,7 @@ if (!empty($_POST)) {
 
         <div class="col">
             <button type="submit" class="btn btn-primary">Buscar</button>
-            <a href="./TempoForm.php" class="btn btn-success">Cadastrar</a>
+            <a href="./UsuarioForm.php" class="btn btn-success">Cadastrar</a>
         </div>
     </div>
 </form>
@@ -72,9 +72,9 @@ if (!empty($_POST)) {
                             <td>$item->email</td>
                             <td>$item->login</td>
                             <td>$item->senha</td>                        
-                            <td><a href='./SalaForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a></td>
+                            <td><a href='./UsuarioForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a></td>
                             <td><a 
-                                 href='./SalaList.php?id=$item->id'
+                                 href='./UsuarioList.php?id=$item->id'
                                  onclick='return confirm(\"Deseja realmente excluir?\")'
                                  class='btn btn-danger btn-sm'
                                 >Excluir</a></td>

@@ -38,7 +38,7 @@ if (!empty($_POST)) {
 
         <div class="col">
             <button type="submit" class="btn btn-primary">Buscar</button>
-            <a href="./UsuarioForm.php" class="btn btn-success">Cadastrar</a>
+            <a href="./PlaylistForm.php" class="btn btn-success">Cadastrar</a>
         </div>
     </div>
 </form>
