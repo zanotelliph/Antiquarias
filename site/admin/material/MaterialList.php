@@ -26,10 +26,10 @@ if (!empty($_POST)) {
     <div class="row">
         <div class="col">
             <select name="material" class="form-select">
-                <option value="nome">Microfone</option>
-                <option value="descricao">TV</option>
-                <option value="data_criacao">Caixa de Som</option>
-                <option value="localidade">Iluminação</option>
+                <option value="microfone">Microfone</option>
+                <option value="tv">Televisão</option>
+                <option value="caixa_som">Caixa de Som</option>
+                <option value="iluminacao">Iluminação</option>
              
             </select>
         </div>

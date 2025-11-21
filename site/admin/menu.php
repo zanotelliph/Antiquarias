@@ -2,7 +2,7 @@
 include './header.php';
 include './database/db.class.php';
 
-$db = new db('usuario');
+$db = new db('menu');
 $db->checkLogin();
 ?>
 
@@ -58,8 +58,8 @@ $db->checkLogin();
                     <p class="card-text">Gerencie os horários de sessão de karaokê</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./Tempo/TempoList.php" class="btn btn-success">Gerenciar tempo</a>
-                        <a href="./Tempo/salaForm.php" class="btn btn-outline-success">Gerencie os horários</a>
+                        <a href="./tempo/TempoList.php" class="btn btn-success">Gerenciar tempo</a>
+                        <a href="./tempo/TempoForm.php" class="btn btn-outline-success">Gerencie os horários</a>
                     </div>
                 </div>
             </div>

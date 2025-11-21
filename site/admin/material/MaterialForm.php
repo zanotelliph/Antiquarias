@@ -16,7 +16,7 @@ if (!empty($_POST)) {
         }
 
         if (empty($_POST['tv'])) {
-            $errors[] = 'A tv é obrigatória';
+            $errors[] = 'A Televisão é obrigatória';
         }
 
         if (empty($_POST['caixa_som'])) {
@@ -65,7 +65,7 @@ if (!empty($_GET['id'])) {
                 '' ?>">
         </div>
       <div class="col-4">
-            <label for="" class="form-label">TV </label>
+            <label for="" class="form-label">Televisão </label>
             <input class="form-control" type="text" name="tv" value="<?= $data->tv ??
                 '' ?>">
         </div>

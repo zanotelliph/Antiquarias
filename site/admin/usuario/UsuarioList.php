@@ -2,13 +2,13 @@
 include '../header.php';
 include '../database/db.class.php';
 
-$db = new db('sala');
+$db = new db('usuario');
 //var_dump($dados);
 $db->checkLogin();
 
 if (!empty($_GET['id'])) {
     $db->destroy($_GET['id']);
-    header('Location: SalaList.php');
+    header('Location: UsuarioList.php');
     exit;
 }
 
@@ -20,16 +20,17 @@ if (!empty($_POST)) {
 
 ?>
 
-<h3>materiais:</h3>
+<h3>Dados de usuário:</h3>
 
-<form action="./SalaList.php" method="post">
+<form action="./salaList.php" method="post">
     <div class="row">
         <div class="col">
             <select name="sala" class="form-select">
-                <option value="quantidade_pessoas">Quantidade de Pessoas</option>
-                <option value="quantidade_salas">Quantidade de salas </option>
-                <option value="comida">Comida</option>
-                
+                <option value="quantidade_pessoas">Nome</option>
+                <option value="quantidade_salas">Telefone</option>
+                <option value="quantidade_salas">Email</option>
+                <option value="quantidade_salas">login</option>
+                <option value="quantidade_salas">senha</option>
             </select>
         </div>
 
@@ -39,7 +40,7 @@ if (!empty($_POST)) {
 
         <div class="col">
             <button type="submit" class="btn btn-primary">Buscar</button>
-            <a href="./SalaForm.php" class="btn btn-success">Cadastrar</a>
+            <a href="./TempoForm.php" class="btn btn-success">Cadastrar</a>
         </div>
     </div>
 </form>
@@ -50,9 +51,12 @@ if (!empty($_POST)) {
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Quantidade de Pessoas</th>
-                     <th scope="col">Quantidade de Salas</th>
-                    <th scope="col">Comida </th>              
+                    <th scope="col">nome</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Login</th>
+                    <th scope="col">Senha</th>
+                             
                 </tr>
             </thead>
             <tbody>
@@ -62,11 +66,12 @@ if (!empty($_POST)) {
                     foreach ($dados as $item) {
                         echo "<tr>
                             <th scope='row'>$item->id</th>
-                             <td>$item-># </td>
-                            <td>$item->Quantidade de Pessoas </td>
-                            <td>$item->Quantidade de Salas </td>
-                            <td>$item-> Comida </td>
-                            
+                            <td>$item-># </td>
+                            <td>$item->nome</td>
+                            <td>$item->telefone</td>
+                            <td>$item->email</td>
+                            <td>$item->login</td>
+                            <td>$item->senha</td>                        
                             <td><a href='./SalaForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a></td>
                             <td><a 
                                  href='./SalaList.php?id=$item->id'

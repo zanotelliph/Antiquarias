@@ -22,11 +22,11 @@ if (!empty($_POST)) {
 
 <h3>Agendamento:</h3>
 
-<form action="./salaList.php" method="post">
+<form action="./TempoList.php" method="post">
     <div class="row">
         <div class="col">
             <select name="sala" class="form-select">
-                <option value="quantidade_pessoas">Duração da sessão de Karaokê</option>
+                <option value="quantidade_pessoas">nome</option>
                 <option value="quantidade_salas">Data de agendamento</option>
                 
             </select>
@@ -63,9 +63,7 @@ if (!empty($_POST)) {
                             <th scope='row'>$item->id</th>
                              <td>$item-># </td>
                             <td>$item->Quantidade de Pessoas </td>
-                            <td>$item->Quantidade de Salas </td>
-                            
-                            
+                            <td>$item->Quantidade de Salas </td>                           
                             <td><a href='./SalaForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a></td>
                             <td><a 
                                  href='./SalaList.php?id=$item->id'
