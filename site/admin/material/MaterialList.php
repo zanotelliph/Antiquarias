@@ -1,6 +1,8 @@
 <?php
-include "../../base/header.php";
-include "../db.class.php";
+include "./header.php";
+
+include "../database/db.class.php";
+
 
 $db = new db('material');
 //var_dump($dados);
@@ -87,5 +89,5 @@ if (!empty($_POST)) {
 
 
 <?php
-include "../../base/footer.php"; ?>
+include "./footer.php"; ?>
 ?>

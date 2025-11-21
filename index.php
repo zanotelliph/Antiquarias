@@ -1,132 +1,216 @@
+<?php
+
+include "./header.php";
+include "./db.class.php";
+
+    $db = new db("user");
+    $db->checkLogin();
+?>
+
+<style>
 body {
-    background: #0a0a0f;
-    color: #e8e8ff;
-    font-family: 'Poppins', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
 }
 
-/* LINKS */
-a {
-    color: #a86bff;
-    transition: .3s;
+h3 {
+    color: #00f7ff;
+    text-shadow: 0 0 10px #00f7ff, 0 0 20px #00f7ff, 0 0 30px #00f7ff;
+    border-color: #00f7ff !important;
 }
 
-a:hover {
-    color: #ff4dbe;
-    text-shadow: 0 0 8px #ff4dbe;
+.accordion-button {
+    background: #111;
+    color: #0ff !important;
+    border: none;
+    font-weight: bold;
+    text-shadow: 0 0 8px #0ff;
 }
 
-/* HEADER */
-.blog-header {
-    background: linear-gradient(90deg, #3b0b69, #8615b8);
-    padding: 20px;
-    border-bottom: 2px solid #ff4dbe;
-    box-shadow: 0 0 15px #651fff;
+.accordion-button:not(.collapsed) {
+    background: #0ff22f33;
+    color: #fff;
+    box-shadow: 0 0 15px #0ff;
 }
 
-/* MENU SUPERIOR */
-.nav-scroller {
-    background: rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.accordion-body {
+    background: #0f0f0f;
+    color: #cfcfcf;
+    border-left: 2px solid #0ff;
+    border-right: 2px solid #0ff;
+    box-shadow: inset 0 0 10px #0ff55f;
 }
 
-.nav a {
-    color: #d8baff;
-    margin-right: 20px;
-    transition: .3s;
-    font-weight: 500;
+.btn-success {
+    background: #00ff88;
+    border: 1px solid #00ffcc;
+    color: #000;
+    font-weight: bold;
+    text-shadow: 0 0 5px #fff;
+    box-shadow: 0 0 12px #00ffcc;
 }
 
-.nav a:hover {
-    color: #ff4dbe;
-    text-shadow: 0 0 5px #ff4dbe;
+.btn-success:hover {
+    background: #00ffaa;
+    box-shadow: 0 0 20px #00ffcc;
 }
 
-/* SEÇÃO DESTACADA */
-.bg-dark {
-    background: linear-gradient(135deg, #12002f, #2d036f) !important;
-    border: 1px solid #6b00ff;
-    box-shadow: 0 0 25px #6b00ff;
+iframe {
+    border: 2px solid #00f7ff !important;
+    box-shadow: 0 0 15px #00f7ff;
 }
 
-/* CARDS */
-.card {
-    background: #12002f;
-    border: 1px solid #6b00ff;
-    color: #e8e8ff;
-    box-shadow: 0 0 20px rgba(103, 58, 183, 0.5);
-    transition: transform .3s, box-shadow .3s;
+.carousel-item img {
+    box-shadow: 0 0 20px #00ffcc;
+    border-radius: 10px;
 }
+</style>
 
-.card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 25px #b43fff;
-}
+<div class="row mb-5">
+    <div class="col-12">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/menta.jpg" class="d-block w-100" style="max-height: 400px;" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/lavanda.jpg" class="d-block w-100" style="max-height: 400px;" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="img/alecrim.jpg" class="d-block w-100" style="max-height: 400px;" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        
+    </div>
+</div>
 
-.badge {
-    background: #ff4dbe !important;
-}
+<div class="row">
+    <aside class="col-8">
+        
+        <h3 class="pb-2 mb-4 fst-italic border-bottom border-secondary">FAQ</h3>
+        <div class="justify-content-evenly">
 
-/* LATERAL DIREITA */
-.bg-light {
-    background: #1b003a !important;
-    color: #f0e6ff !important;
-    border: 1px solid #6b00ff;
-    box-shadow: 0 0 15px #6b00ff;
-}
+            <div class="accordion accordion-flush" id="a1">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse1" aria-expanded="false"
+                            aria-controls="flush-collapse1">
+                            Karaokê com comida?
+                        </button>
+                    </h2>
+                    <div id="flush-collapse1" class="accordion-collapse collapse" data-bs-parent="#a1">
+                        <div class="accordion-body">
+                           Tem sim!
+                        </div>
+                    </div>
+                </div>
 
-/* FOOTER */
-.blog-footer {
-    background: #0e001f !important;
-    border-top: 2px solid #ff4dbe;
-    color: #c9a9ff !important;
-}
+                <div class="accordion-item mt-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse2" aria-expanded="false"
+                            aria-controls="flush-collapse2">
+                            Sou menor, posso participar?
+                        </button>
+                    </h2>
+                    <div id="flush-collapse2" class="accordion-collapse collapse" data-bs-parent="#a1">
+                        <div class="accordion-body">
+                            Dependendo da Playlist sim!
+                        </div>
+                    </div>
+                </div>
 
-.blog-footer a {
-    color: #a86bff;
-}
+                <div class="accordion-item mt-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse3" aria-expanded="false"
+                            aria-controls="flush-collapse3">
+                            Onde fica?
+                        </button>
+                    </h2>
+                    <div id="flush-collapse3" class="accordion-collapse collapse" data-bs-parent="#a1">
+                        <div class="accordion-body">
+                            Rua Carolina, 902 D, Paraíso
+                        </div>
+                    </div>
+                </div>
 
-.blog-footer a:hover {
-    color: #ff4dbe;
-    text-shadow: 0 0 8px #ff4dbe;
-}
+                <div class="accordion-item mt-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse4" aria-expanded="false"
+                            aria-controls="flush-collapse4">
+                            Qual o horário de funcionamento?
+                        </button>
+                    </h2>
+                    <div id="flush-collapse4" class="accordion-collapse collapse" data-bs-parent="#a1">
+                        <div class="accordion-body">
+                            DAs 18h às 02h.
+                        </div>
+                    </div>
+                </div>
 
-/* BOTÕES */
-.btn-outline-primary {
-    border-color: #a86bff;
-    color: #d8baff;
-}
+                <div class="accordion-item mt-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse5" aria-expanded="false"
+                            aria-controls="flush-collapse5">
+                            Para menos de idade o horário muda?
+                        </button>
+                    </h2>
+                    <div id="flush-collapse5" class="accordion-collapse collapse" data-bs-parent="#a1">
+                        <div class="accordion-body">
+                            Sim, 18h-23h
+                        </div>
+                    </div>
+                </div>
 
-.btn-outline-primary:hover {
-    background: #a86bff;
-    color: #12002f;
-    box-shadow: 0 0 8px #a86bff;
-}
+                <div class="accordion-item mt-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse6" aria-expanded="false"
+                            aria-controls="flush-collapse6">
+                            Posso ter mais que uma sala?
+                        </button>
+                    </h2>
+                    <div id="flush-collapse6" class="accordion-collapse collapse" data-bs-parent="#a1">
+                        <div class="accordion-body">
+                            Dependendo da disponibilidade das salas, sim.
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </aside>
 
-.btn-outline-secondary {
-    border-color: #ff4dbe;
-    color: #ffb2e5;
-}
+    <div class="col-4">
+        <h3 class="pb-2 mb-4 fst-italic border-bottom border-secondary">Localização</h3>
 
-.btn-outline-secondary:hover {
-    background: #ff4dbe;
-    color: white;
-    box-shadow: 0 0 8px #ff4dbe;
-}
+        <iframe width="370" height="350"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-52.66605377197266%2C-27.157073194169662%2C-52.54159927368164%2C-27.071354789865012&amp;layer=mapnik">
+        </iframe><br />
 
-/* TABELAS */
-.table {
-    color: #e6d8ff;
-}
+        <small>
+            <a class="btn btn-success" href="https://www.openstreetmap.org/#map=13/-27.11422/-52.60383">
+                Ver mapa ampliado
+            </a>
+        </small>
+    </div>
+</div>
 
-.table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: rgba(255, 255, 255, .05);
-}
-
-.table-hover tbody tr:hover {
-    background-color: rgba(255, 0, 221, 0.2);
-}
-
-/* TEXTOS */
-h1, h2, h3, h4, h5 {
-    text-shadow: 0 0 10px #6b00ff;
-}
+<?php
+include "./footer.php";
+?>

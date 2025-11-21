@@ -1,6 +1,7 @@
 <?php
-include "../../base/header.php";
+include "../header.php";
 include "../db.class.php";
+
 
 $db = new db('playlist');
 $data = null;

@@ -1,6 +1,7 @@
 <?php
-include "../../base/header.php";
-include "../db.class.php";
+include "./header.php";
+include "../database/db.class.php";
+
 
 $db = new db('material');
 $data = null;
@@ -122,4 +123,4 @@ if (!empty($_GET['id'])) {
 
 </form>
 
-<?php include "../../base/footer.php"; ?>
+<?php include "./footer.php"; ?>

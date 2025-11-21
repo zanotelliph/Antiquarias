@@ -1,5 +1,5 @@
 <?php
-include "../../base/header.php";
+include "./header.php";
 include "../db.class.php";
 
 $db = new db('usuario');
@@ -90,5 +90,5 @@ if (!empty($_POST)) {
 
 
 <?php
-include "../../base/footer.php"; ?>
+include "../footer.php"; ?>
 ?>

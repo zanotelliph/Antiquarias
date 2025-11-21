@@ -1,5 +1,5 @@
 <?php
-include "../../base/header.php";
+include "../header.php";
 include "../db.class.php";
 
 $db = new db('tempo');
@@ -81,5 +81,5 @@ if (!empty($_POST)) {
 </div>
 
 <?php
-include "../../base/footer.php"; ?>
+include "../footer.php"; ?>
 ?>
