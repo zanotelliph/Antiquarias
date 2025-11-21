@@ -6,7 +6,7 @@ class db
     private $user = 'root';
     private $password = ''; 
     private $port = '3306';
-    private $dbname = 'objetos_antigos'; 
+    private $dbname = 'Antiquarias'; 
     private $table_name;
 
     public function __construct($table_name)

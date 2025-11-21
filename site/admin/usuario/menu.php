@@ -29,8 +29,8 @@ $db->checkLogin();
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-warning border-4">
-                    <h5 class="card-title text-warning fw-bold">Artigos</h5>
-                    <p class="card-text">Cadastre artigos novos .</p>
+                    <h5 class="card-title text-warning fw-bold">playlists</h5>
+                    <p class="card-text">Cadastre playlists novos .</p>
                     
                     <div class="d-grid gap-2">
                     </div>
@@ -41,12 +41,25 @@ $db->checkLogin();
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-success border-4">
-                    <h5 class="card-title text-success fw-bold">Dúvidas</h5>
-                    <p class="card-text">Gerencie as dúvidas</p>
+                    <h5 class="card-title text-success fw-bold">Salas</h5>
+                    <p class="card-text">Gerencie as salas</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./duvida/DuvidaList.php" class="btn btn-success">Gerenciar Dúvidas</a>
-                        <a href="./duvida/DuvidaForm.php" class="btn btn-outline-success">Responder</a>
+                        <a href="./sala/salaList.php" class="btn btn-success">Gerenciar salas</a>
+                        <a href="./sala/salaForm.php" class="btn btn-outline-success">Responder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body border-start border-success border-4">
+                    <h5 class="card-title text-success fw-bold">Tempo</h5>
+                    <p class="card-text">Gerencie os horários de sessão de karaokê</p>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="./Tempo/TempoList.php" class="btn btn-success">Gerenciar tempo</a>
+                        <a href="./Tempo/salaForm.php" class="btn btn-outline-success">Gerencie os horários</a>
                     </div>
                 </div>
             </div>
@@ -55,12 +68,11 @@ $db->checkLogin();
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-success border-4">
-                    <h5 class="card-title text-success fw-bold">Categorias</h5>
-                    <p class="card-text">Gerencie as categorias</p>
+                    <h5 class="card-title text-success fw-bold">Materiais</h5>
+                    <p class="card-text">Gerencie as materiais</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./categoria/CategoriaList.php" class="btn btn-success">Gerenciar Categorias</a>
-                        <a href="./categoria/CategoriaForm.php" class="btn btn-outline-success">Nova Categoria</a>
+                        <a href="./material/materialList.php" class="btn btn-success">Gerenciar Materiais</a>
                     </div>
                 </div>
             </div>

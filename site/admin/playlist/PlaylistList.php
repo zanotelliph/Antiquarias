@@ -2,7 +2,7 @@
 include '../header.php';
 include '../database/db.class.php';
 
-$db = new db('artigo');
+$db = new db('playlist');
 //var_dump($dados);
 $db->checkLogin();
 
@@ -20,15 +20,15 @@ if (!empty($_POST)) {
 
 <h3>Listagem Usuário</h3>
 
-<form action="./ArtigoList.php" method="post">
+<form action="./playlistList.php" method="post">
     <div class="row">
         <div class="col">
             <select name="tipo" class="form-select">
                 <option value="nome">#</option>
                 <option value="nome">Titulo</option>
-                <option value="email">conteúdo</option>
-                <option value="telefone">Data de origem</option>
-                <option value="telefone">Data de publicação</option>
+                <option value="email">Artista</option>
+                <option value="telefone">Modo</option>
+               
             </select>
         </div>
 
@@ -50,9 +50,9 @@ if (!empty($_POST)) {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Titulo</th>
-                    <th scope="col">Conteudo</th>
-                    <th scope="col">Data de origem</th>
-                    <th scope="col">Data de publicacao</th>
+                    <th scope="col">Artista</th>
+                    <th scope="col">Modo</th>
+                   
                  
                 </tr>
             </thead>
@@ -62,13 +62,12 @@ if (!empty($_POST)) {
                 foreach ($dados as $item) {
                     echo "<tr>
                         <th scope='row'>$item->id</th>
-                        <td>$item->nome</td>
-                        <td>$item->telefone</td>
-                        <td>$item->email</td>
-                        <td>$item->login</td>
-                        <td><a href='./ArtigoForm.php?id=$item->id'>Editar</a></td>
+                        <td>$item->Titulo</td>
+                        <td>$item->Artista</td>
+                        <td>$item->Modo</td>
+                        <td><a href='./playlistForm.php?id=$item->id'>Editar</a></td>
                         <td><a 
-                             href='./ArtigoList.php?id=$item->id'
+                             href='./playlistList.php?id=$item->id'
                              onclick='return confirm(\"Deseja Excluir?\")'
                             >Deletar</a></td>
                     </tr>";

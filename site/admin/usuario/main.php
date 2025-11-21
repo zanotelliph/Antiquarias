@@ -29,11 +29,12 @@ $db->checkLogin();
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-warning border-4">
-                    <h5 class="card-title text-warning fw-bold">Artigos</h5>
-                    <p class="card-text">Cadastre artigos novos .</p>
+                    <h5 class="card-title text-warning fw-bold">Playlists</h5>
+                    <p class="card-text">Cadastre Playlists novas .</p>
                     
                     <div class="d-grid gap-2">
-
+                        <a href="./playlist/PlaylistList.php" class="btn btn-warning">Gerenciar playlists</a>
+                        <a href="./playlist/PlaylistForm.php" class="btn btn-outline-warning">Nova playlist</a>
                     </div>
                 </div>
             </div>
@@ -42,12 +43,12 @@ $db->checkLogin();
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-success border-4">
-                    <h5 class="card-title text-success fw-bold">Dúvidas</h5>
-                    <p class="card-text">Gerencie as dúvidas</p>
+                    <h5 class="card-title text-success fw-bold">Salas</h5>
+                    <p class="card-text">Gerencie as salas</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./duvida/DuvidaList.php" class="btn btn-success">Gerenciar Dúvidas</a>
-                        <a href="./duvida/DuvidaForm.php" class="btn btn-outline-success">Responder</a>
+                        <a href="./sala/SalaList.php" class="btn btn-success">Gerenciar salas</a>
+                        <a href="./sala/SalaForm.php" class="btn btn-outline-success">Responder</a>
                     </div>
                 </div>
             </div>
@@ -56,12 +57,12 @@ $db->checkLogin();
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-success border-4">
-                    <h5 class="card-title text-success fw-bold">Categorias</h5>
-                    <p class="card-text">Gerencie as categorias</p>
+                    <h5 class="card-title text-success fw-bold">Materiais</h5>
+                    <p class="card-text">Gerencie as Materiais</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./categoria/CategoriaList.php" class="btn btn-success">Gerenciar Categorias</a>
-                        <a href="./categoria/CategoriaForm.php" class="btn btn-outline-success">Nova Categoria</a>
+                        <a href="./Material/MaterialList.php" class="btn btn-success">Gerenciar materiais</a>
+                        <a href="./Material/MaterialForm.php" class="btn btn-outline-success">Nova material</a>
                     </div>
                 </div>
             </div>

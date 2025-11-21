@@ -2,13 +2,13 @@
 include '../header.php';
 include '../database/db.class.php';
 
-$db = new db('categoria');
+$db = new db('tempo');
 //var_dump($dados);
 $db->checkLogin();
 
 if (!empty($_GET['id'])) {
     $db->destroy($_GET['id']);
-    header('Location: DuvidaList.php');
+    header('Location: TempoList.php');
     exit;
 }
 
@@ -20,17 +20,15 @@ if (!empty($_POST)) {
 
 ?>
 
-<h3>Categorias:</h3>
+<h3>Agendamento:</h3>
 
-<form action="./CategoriaList.php" method="post">
+<form action="./salaList.php" method="post">
     <div class="row">
         <div class="col">
-            <select name="categoria" class="form-select">
-                <option value="nome">Nome</option>
-                <option value="descricao">Descrição</option>
-                <option value="data_criacao">Data de criação</option>
-                <option value="localidade">Localidade</option>
-             
+            <select name="sala" class="form-select">
+                <option value="quantidade_pessoas">Duração da sessão de Karaokê</option>
+                <option value="quantidade_salas">Data de agendamento</option>
+                
             </select>
         </div>
 
@@ -40,7 +38,7 @@ if (!empty($_POST)) {
 
         <div class="col">
             <button type="submit" class="btn btn-primary">Buscar</button>
-            <a href="./VeiculoForm.php" class="btn btn-success">Cadastrar</a>
+            <a href="./TempoForm.php" class="btn btn-success">Cadastrar</a>
         </div>
     </div>
 </form>
@@ -51,10 +49,9 @@ if (!empty($_POST)) {
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Data de criação</th>
-                    <th scope="col">Localidade</th>
+                    <th scope="col">Duração da sessão de Karaokê</th>
+                     <th scope="col">Duração da sessão de Karaokê</th>
+                             
                 </tr>
             </thead>
             <tbody>
@@ -64,25 +61,23 @@ if (!empty($_POST)) {
                     foreach ($dados as $item) {
                         echo "<tr>
                             <th scope='row'>$item->id</th>
-                            <td>$item->nome</td>
-                            <td>$item->descricao</td>
-                            <td>$item->data_criacao</td>
-                            <td>$item->localidade</td>
-                            <td><a href='./VeiculoForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a></td>
+                             <td>$item-># </td>
+                            <td>$item->Quantidade de Pessoas </td>
+                            <td>$item->Quantidade de Salas </td>
+                            
+                            
+                            <td><a href='./SalaForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a></td>
                             <td><a 
-                                 href='./CategoriaList.php?id=$item->id'
+                                 href='./SalaList.php?id=$item->id'
                                  onclick='return confirm(\"Deseja realmente excluir?\")'
                                  class='btn btn-danger btn-sm'
                                 >Excluir</a></td>
                         </tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='9' class='text-center'>Nenhum artefato encontrado.</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
-
 
     </div>
 </div>
