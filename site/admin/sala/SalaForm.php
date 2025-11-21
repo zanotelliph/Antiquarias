@@ -21,21 +21,28 @@ if (!empty($_POST)) {
             $errors[] = 'A quantidade de salas é obrigatória';
         }
 
-        if ($_POST['tem_comida'] == 'sim') {
+        if ($_POST['tem_comida'] === 'sim') {
+
             if (empty($_POST['comida'])) {
-                $errors[] = 'A comida é obrigatória quando a opção "Sim" é selecionada.';
+                $errors[] = 'Escolha uma opção de comida antes!';
+            } else {
+                $comidas_validas = ['pizza', 'batata_frita', 'frango_frito'];
+
+                if (!in_array($_POST['comida'], $comidas_validas)) {
+                    $errors[] = 'Comida selecionada inválida.';
+                }
             }
         }
-        echo "
-            <script>
-                setTimeout(() => window.location.href = 'SalaList.php', 2000);
-            </script>
-        ";
+
+        if (empty($errors)) {
+            echo "
+                <script>
+                    setTimeout(() => window.location.href = 'SalaList.php', 2000);
+                </script>
+            ";
+        }
 
     } catch (Exception $e) {
-
-        var_dump($errors, $e->getMessage());
-        exit();
     }
 }
 
@@ -46,26 +53,45 @@ if (!empty($_GET['id'])) {
 ?>
 
 <h3>Sala:</h3>
-<form action="" method="post">
+<form action="SalaForm.php" method="post">
     <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
     <div class="row">
-        <div class="col-4">
-            <label for="" class="form-label">Quantidade de Pessoas</label>
-            <input class="form-control" type="text" name="quantidade_pessoas" value="<?= $data->quantidade_pessoas ??
-                '' ?>">
+       <div class="col-6">
+            <label class="form-label">Quantidade de pessoas</label>
+            <input class="form-control" list="quantidade_pessoas" type="text" name="quantidade_pessoas" value="<?= $data->quantidade_pessoas ?? '' ?>">
+                   value="<?= $data->quantidade_pessoas ?? '' ?>">
+            <datalist id="quantidade_pessoas">
+                <option value="1-3">
+                <option value="4-6">
+                <option value="7-10">
+                <option value="+10">
+                <option value="Máximo:11-20">
+            </datalist>
         </div>
 
         <div class="col-4">
             <label for="" class="form-label">Quantidade de Salas</label>
-            <input class="form-control" type="text" name="quantidade_salas" value="<?= $data->quantidade_salas ??
-                '' ?>">
+            <input class="form-control" list="quantidade_salas" type="text" name="quantidade_salas" value="<?= $data->quantidade_salas ?? '' ?>">
+                   value="<?= $data->quantidade_salas ?? '' ?>">
+            <datalist id="quantidade_salas">
+                <option value="1-3">
+                <option value="4-6">
+                <option value="7-10">
+            </datalist>
+            </select>
+            <small class="text-warning">* Admin deve verificar disponibilidade</small>
         </div>
 
         <div class="col-4">
             <label for="" class="form-label">Comida </label>
-            <input class="form-control" type="text" name="localidade" value="<?= $data->comida ??
-                '' ?>">
+             <input class="form-control" list="comida" type="text" name="comida" value="<?= $data->comida ?? '' ?>">
+                   value="<?= $data->comida ?? '' ?>">
+            <datalist id="comida">
+                <option value="Pizza">
+                <option value="Frango Frito">
+                <option value="Batata Frita">
+            </datalist>
         </div>
     </div>
 

@@ -26,8 +26,8 @@ if (!empty($_POST)) {
     <div class="row">
         <div class="col">
             <select name="sala" class="form-select">
-                <option value="quantidade_pessoas">nome</option>
-                <option value="quantidade_salas">Data de agendamento</option>
+                <option value="horas">Tempo</option>
+                <option value="horario">Data de agendamento</option>
                 
             </select>
         </div>
@@ -50,7 +50,7 @@ if (!empty($_POST)) {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Duração da sessão de Karaokê</th>
-                     <th scope="col">Duração da sessão de Karaokê</th>
+                     <th scope="col">Data da sessão de Karaokê</th>
                              
                 </tr>
             </thead>
@@ -62,11 +62,11 @@ if (!empty($_POST)) {
                         echo "<tr>
                             <th scope='row'>$item->id</th>
                              <td>$item-># </td>
-                            <td>$item->Quantidade de Pessoas </td>
-                            <td>$item->Quantidade de Salas </td>                           
-                            <td><a href='./SalaForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a></td>
+                            <td>$item->Duração da sessão de Karaokê </td>
+                            <td>$item->Data da sessão de Karaokê </td>                           
+                            <td><a href='./TempoForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a></td>
                             <td><a 
-                                 href='./SalaList.php?id=$item->id'
+                                 href='./TempoList.php?id=$item->id'
                                  onclick='return confirm(\"Deseja realmente excluir?\")'
                                  class='btn btn-danger btn-sm'
                                 >Excluir</a></td>
@@ -79,7 +79,6 @@ if (!empty($_POST)) {
 
     </div>
 </div>
-
 
 <?php
 include "../../base/footer.php"; ?>

@@ -22,7 +22,7 @@ if (!empty($_POST)) {
 
 <h3>Dados de usuário:</h3>
 
-<form action="./salaList.php" method="post">
+<form action="./UsuarioList.php" method="post">
     <div class="row">
         <div class="col">
             <select name="sala" class="form-select">

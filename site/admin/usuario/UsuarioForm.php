@@ -30,7 +30,7 @@ if (!empty($_POST)) {
         
         echo "
             <script>
-                setTimeout(() => window.location.href = 'SalaList.php', 2000);
+                setTimeout(() => window.location.href = 'UsuarioList.php', 2000);
             </script>
         ";
 
@@ -48,7 +48,7 @@ if (!empty($_GET['id'])) {
 ?>
 
 <h3>Adicionando dados de usuário:</h3>
-<form action="" method="post">
+<form action="UsuarioForm.php" method="post">
     <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
     <div class="row">

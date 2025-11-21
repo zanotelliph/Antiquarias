@@ -64,12 +64,11 @@ if (!empty($_GET['id'])) {
 ?>
 
 <h3>Sua Playlist:</h3>
-<form action="" method="post">
+<form action="PlaylistList.php" method="post">
     <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
     <div class="row">
 
-        <!-- TÍTULO -->
         <div class="col-6">
             <label class="form-label">Título</label>
             <input class="form-control" list="titulos" type="text" name="titulo" 
@@ -83,7 +82,6 @@ if (!empty($_GET['id'])) {
             </datalist>
         </div>
 
-        <!-- ARTISTA -->
         <div class="col-6">
             <label class="form-label">Artista</label>
             <input class="form-control" list="artistas" type="text" name="artista" 
@@ -97,7 +95,6 @@ if (!empty($_GET['id'])) {
             </datalist>
         </div>
 
-        <!-- MODO -->
         <div class="col-6">
             <label class="form-label">Modo</label>
             <select class="form-control" name="modo">
@@ -109,16 +106,9 @@ if (!empty($_GET['id'])) {
             </select>
         </div>
 
-        <!-- SENHA -->
         <div class="col-6">
             <label class="form-label">Senha</label>
             <input class="form-control" type="password" name="senha">
-        </div>
-
-        <!-- CONFIRMAR SENHA -->
-        <div class="col-6">
-            <label class="form-label">Confirmar Senha</label>
-            <input class="form-control" type="password" name="c_senha">
         </div>
 
     </div>

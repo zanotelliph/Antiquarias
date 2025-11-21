@@ -40,7 +40,7 @@ if (!empty($_POST)) {
 
         <div class="col">
             <button type="submit" class="btn btn-primary">Buscar</button>
-            <a href="./VeiculoForm.php" class="btn btn-success">Cadastrar</a>
+            <a href="./MaterialForm.php" class="btn btn-success">Cadastrar</a>
         </div>
     </div>
 </form>
@@ -52,7 +52,7 @@ if (!empty($_POST)) {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Microfone</th>
-                    <th scope="col">TV</th>
+                    <th scope="col">Televisão</th>
                     <th scope="col">Caixa de Som</th>
                     <th scope="col">Iluminação</th>
                 </tr>
