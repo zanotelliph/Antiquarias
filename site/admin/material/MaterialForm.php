@@ -77,7 +77,7 @@ if (!empty($_POST)) {
                 <datalist id="tv">
                     <option value="LG">
                     <option value="Sony">
-                    <option value="Sansung">
+                    <option value="Samsung">
                     <option value="Philco">
                     <option value="AOC">
                 </datalist>

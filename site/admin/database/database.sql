@@ -21,11 +21,12 @@ USE `antiquarias`;
 
 -- Copiando estrutura para tabela antiquarias.material
 CREATE TABLE IF NOT EXISTS `material` (
-  `idmaterial` int DEFAULT NULL,
+  `idmaterial` int NOT NULL AUTO_INCREMENT,
   `microfone` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `tv` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `caixa_som` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `iluminacao` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL
+  `iluminacao` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`idmaterial`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Copiando dados para a tabela antiquarias.material: ~0 rows (aproximadamente)
@@ -52,9 +53,10 @@ CREATE TABLE IF NOT EXISTS `sala` (
 
 -- Copiando estrutura para tabela antiquarias.tempo
 CREATE TABLE IF NOT EXISTS `tempo` (
-  `idtempo` int DEFAULT NULL,
+  `idtempo` int NOT NULL AUTO_INCREMENT,
   `horas` time DEFAULT NULL,
-  `horario` datetime DEFAULT NULL
+  `horario` datetime DEFAULT NULL,
+  PRIMARY KEY (`idtempo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Copiando dados para a tabela antiquarias.tempo: ~0 rows (aproximadamente)
@@ -66,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `telefone` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `email` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `login` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `senha` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+  `senha` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Copiando dados para a tabela antiquarias.usuario: ~0 rows (aproximadamente)

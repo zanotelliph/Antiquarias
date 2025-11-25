@@ -4,10 +4,19 @@ include "../db.class.php";
 
 $db = new db('material', 'idmaterial');
 $data = null;
+$dados = [];
 
 if (!empty($_GET['id'])) {
+    if (!empty($_GET['action']) && $_GET['action'] === 'delete') {
+        $db->destroy($_GET['id']);
+        header('Location: MaterialList.php');
+        exit;
+    }
+
     $data = $db->find($_GET['id']);
 }
+
+$dados = $db->all();
 
 if (!empty($_POST)) {
     try {
@@ -118,6 +127,53 @@ if (!empty($_POST)) {
         </div>
 
     </form>
+
+    <div class="row mt-5">
+        <div class="col">
+            <h4 class="mb-3">Materiais cadastrados</h4>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover text-white">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Microfone</th>
+                            <th scope="col">Televisão</th>
+                            <th scope="col">Caixa de Som</th>
+                            <th scope="col">Iluminação</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (!empty($dados)): ?>
+                            <?php foreach ($dados as $item): ?>
+                                <tr>
+                                    <th scope="row"><?= $item->idmaterial ?></th>
+                                    <td><?= $item->microfone ?></td>
+                                    <td><?= $item->tv ?></td>
+                                    <td><?= $item->caixa_som ?></td>
+                                    <td><?= $item->iluminacao ?></td>
+                                    <td>
+                                        <a href="./MaterialForm.php?id=<?= $item->idmaterial ?>" class="btn btn-warning btn-sm">
+                                            Editar
+                                        </a>
+                                        <a href="./MaterialList.php?action=delete&id=<?= $item->idmaterial ?>"
+                                           class="btn btn-danger btn-sm"
+                                           onclick="return confirm('Deseja realmente excluir este material?');">
+                                            Excluir
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="6" class="text-center">Nenhum material cadastrado.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php include "../footer.php"; ?>

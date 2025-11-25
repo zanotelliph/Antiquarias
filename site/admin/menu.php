@@ -16,8 +16,8 @@ include './db.class.php';
                     <p class="card-text">Gerencie o acesso a dados dos clientes.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="/site/admin/usuario/UsuarioList.php" class="btn btn-primary">Gerenciar Usuários</a>
-                        <a href="/site/admin/usuario/UsuarioForm.php" class="btn btn-outline-primary">Novo Usuário</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/usuario/UsuarioList.php" class="btn btn-primary">Gerenciar Usuários</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/usuario/UsuarioForm.php" class="btn btn-outline-primary">Novo Usuário</a>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,12 @@ include './db.class.php';
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-warning border-4">
                     <h5 class="card-title text-warning fw-bold">playlists</h5>
-                    <p class="card-text">Cadastre playlists novos .</p>
+                    <p class="card-text">Cadastre playlists novas .</p>
+
+                    <div class="d-grid gap-2">
+                        <a href="<?= ADMIN_BASE_PATH ?>/playlist/PlaylistList.php" class="btn btn-success">Gerenciar Playlists</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/playlist/PlaylistForm.php" class="btn btn-outline-success">Cadastrar Playlists</a>
+                    </div>
                     
                     <div class="d-grid gap-2">
                     </div>
@@ -42,8 +47,8 @@ include './db.class.php';
                     <p class="card-text">Gerencie as salas</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="/site/admin/sala/SalaList.php" class="btn btn-success">Gerenciar salas</a>
-                        <a href="/site/admin/sala/SalaForm.php" class="btn btn-outline-success">Responder</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/sala/SalaList.php" class="btn btn-success">Gerenciar salas</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/sala/SalaForm.php" class="btn btn-outline-success">Responder</a>
                     </div>
                 </div>
             </div>
@@ -55,8 +60,8 @@ include './db.class.php';
                     <p class="card-text">Gerencie os horários de sessão de karaokê</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="/site/admin/tempo/TempoList.php" class="btn btn-success">Gerenciar tempo</a>
-                        <a href="/site/admin/usuario/TempoForm.php" class="btn btn-outline-primary">Novo Tempo</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/tempo/TempoList.php" class="btn btn-success">Gerenciar tempo</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/tempo/TempoForm.php" class="btn btn-outline-primary">Novo Tempo</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +74,7 @@ include './db.class.php';
                     <p class="card-text">Gerencie as materiais</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="/site/admin/material/MaterialList.php" class="btn btn-success">Gerenciar Materiais</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/material/MaterialList.php" class="btn btn-success">Gerenciar Materiais</a>
                     </div>
                 </div>
             </div>
@@ -79,7 +84,7 @@ include './db.class.php';
     
     <div class="row mt-5">
         <div class="col text-center">
-            <a href="/site/admin/login.php?logout=true" class="btn btn-danger btn-sm">Sair do Sistema</a>
+            <a href="<?= ADMIN_BASE_PATH ?>/login.php?logout=true" class="btn btn-danger btn-sm">Sair do Sistema</a>
         </div>
     </div>
 </div>

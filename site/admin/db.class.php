@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/config.php';
 
 class db
 {
@@ -170,7 +171,7 @@ class db
 
         if (empty($_SESSION['login']) && empty($_SESSION['nome'])) {
             session_destroy();
-            header('Location: /login.php?error=Sessao Expirada!');
+            header('Location: ' . ADMIN_BASE_PATH . '/login.php?error=Sessao Expirada!');
             exit;
         }
     }
