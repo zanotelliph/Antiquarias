@@ -20,8 +20,9 @@ if (!empty($_POST)) {
 
             echo "<div class='alert alert-success'>Sucesso! Redirecionando...</div>";
             
+            $redirectUrl = ADMIN_BASE_PATH . '/main.php';
             echo "<script>
-                    setTimeout(()=> window.location.href = 'main.php', 1000);
+                    setTimeout(()=> window.location.href = '{$redirectUrl}', 1000);
                   </script>";
             exit;
         } else {

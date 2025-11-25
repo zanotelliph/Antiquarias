@@ -19,8 +19,8 @@ $db->checkLogin();
                     <p class="card-text">Gerencie o acesso a dados dos clientes.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="/site/admin/usuario/UsuarioList.php" class="btn btn-primary">Gerenciar Usuários</a>
-                        <a href="/site/admin/usuario/UsuarioForm.php" class="btn btn-outline-primary">Novo Usuário</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/usuario/UsuarioList.php" class="btn btn-primary">Gerenciar Usuários</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/usuario/UsuarioForm.php" class="btn btn-outline-primary">Novo Usuário</a>
                     </div>
                 </div>
             </div>
@@ -33,8 +33,8 @@ $db->checkLogin();
                     <p class="card-text">Cadastre Playlists novas.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="/site/admin/playlist/PlaylistList.php" class="btn btn-warning">Gerenciar playlists</a>
-                        <a href="/site/admin/playlist/PlaylistForm.php" class="btn btn-outline-warning">Nova playlist</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/playlist/PlaylistList.php" class="btn btn-warning">Gerenciar playlists</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/playlist/PlaylistForm.php" class="btn btn-outline-warning">Nova playlist</a>
                     </div>
                 </div>
             </div>
@@ -47,8 +47,8 @@ $db->checkLogin();
                     <p class="card-text">Gerencie as salas</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="/site/admin/sala/SalaList.php" class="btn btn-success">Gerenciar salas</a>
-                        <a href="/site/admin/sala/SalaForm.php" class="btn btn-outline-success">Responder</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/sala/SalaList.php" class="btn btn-success">Gerenciar salas</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/sala/SalaForm.php" class="btn btn-outline-success">Responder</a>
                     </div>
                 </div>
             </div>
@@ -61,8 +61,8 @@ $db->checkLogin();
                     <p class="card-text">Gerencie os Materiais</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="/site/admin/material/MaterialList.php" class="btn btn-success">Gerenciar materiais</a>
-                        <a href="/site/admin/material/MaterialForm.php" class="btn btn-outline-success">Novo material</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/material/MaterialList.php" class="btn btn-success">Gerenciar materiais</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/material/MaterialForm.php" class="btn btn-outline-success">Novo material</a>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@ $db->checkLogin();
                     <p class="card-text">Gerencie os horários</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="/site/admin/tempo/TempoList.php" class="btn btn-info">Gerenciar Tempo</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/tempo/TempoList.php" class="btn btn-info">Gerenciar Tempo</a>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@ $db->checkLogin();
     
     <div class="row mt-5">
         <div class="col text-center">
-            <a href="login.php?logout=true" class="btn btn-danger btn-sm">Sair do Sistema</a>
+            <a href="<?= ADMIN_BASE_PATH ?>/login.php?logout=true" class="btn btn-danger btn-sm">Sair do Sistema</a>
         </div>
     </div>
 </div>
