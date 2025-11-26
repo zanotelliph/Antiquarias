@@ -1,3 +1,10 @@
+-- --------------------------------------------------------
+-- Servidor:                     127.0.0.1
+-- Versão do servidor:           8.0.30 - MySQL Community Server - GPL
+-- OS do Servidor:               Win64
+-- HeidiSQL Versão:              12.1.0.6537
+-- --------------------------------------------------------
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
@@ -7,26 +14,12 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Copiando estrutura do banco de dados para antiquarias
 CREATE DATABASE IF NOT EXISTS `antiquarias` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `antiquarias`;
 
-CREATE TABLE IF NOT EXISTS `material` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `modelo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `quantidade` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
-CREATE TABLE IF NOT EXISTS `playlist` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `artista` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `modo` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
+-- Copiando estrutura para tabela antiquarias.sala
 CREATE TABLE IF NOT EXISTS `sala` (
   `id` int NOT NULL AUTO_INCREMENT,
   `quantidade_pessoas` int DEFAULT NULL,
@@ -35,25 +28,7 @@ CREATE TABLE IF NOT EXISTS `sala` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
-CREATE TABLE IF NOT EXISTS `tempo` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `horas` time DEFAULT NULL,
-  `horario` datetime DEFAULT NULL,
-  `id_sala` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_sala` (`id_sala`),
-  CONSTRAINT `id_sala` FOREIGN KEY (`id_sala`) REFERENCES `sala` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `telefone` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `email` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `login` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `senha` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+-- Copiando dados para a tabela antiquarias.sala: ~0 rows (aproximadamente)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
