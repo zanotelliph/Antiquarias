@@ -13,20 +13,20 @@ if (!empty($_POST)) {
     try {
         $errors = [];
 
-        if (empty($_POST['microfone'])) {
-            $errors[] = 'O Microfone é obrigatório';
+        if (empty($_POST['tipo'])) {
+            $errors[] = 'O nome é obrigatório';
         }
 
-        if (empty($_POST['tv'])) {
-            $errors[] = 'A Televisão é obrigatória';
+        if (empty($_POST['marca'])) {
+            $errors[] = 'A tipo é obrigatória';
         }
 
-        if (empty($_POST['caixa_som'])) {
-            $errors[] = 'A Caixa de som é obrigatória';
+        if (empty($_POST['modelo'])) {
+            $errors[] = 'A nome é obrigatória';
         }
 
-        if (empty($_POST['iluminacao'])) {
-            $errors[] = 'A Iluminação é obrigatória';
+        if (empty($_POST['quantidade'])) {
+            $errors[] = 'A quantidade é obrigatória';
         }
 
         if (empty($_POST['idmaterial'])) {
@@ -57,58 +57,62 @@ if (!empty($_POST)) {
 
         <div class="row">
 
-            <div class="col-md-6">
-                <label class="form-label">Microfone</label>
-                <input class="form-control" list="microfone" type="text" name="microfone"
-                    value="<?= $data->microfone ?? '' ?>">
-                <datalist id="microfone">
-                    <option value="Micro Solution MHD">
-                    <option value="Micro Solution MHD 3.0">
-                    <option value="Shure SM58">
-                    <option value="HyperX QuadCast">
-                    <option value="Audio-Technica AT2020">
-                </datalist>
-            </div>
+        <div class="col-6">
+            <label class="form-label">Material</label>
+            <input class="form-control" list="tipo" type="text" name="tipo"
+                   value="<?= $data->tipo ?? '' ?>">
+                <option value="Microfone">
+                <option value="TV">
+                <option value="Iluminação">
+                <option value="Caixa de Som"></option>
+            
+        <div class="col-4">
+            <label class="form-label">marca</label>
+            <input class="form-control" list="nome" type="marca" name="marca"
+                   value="<?= $data->marca ?? '' ?>">
+            <datalist id="tipo">
 
-            <div class="col-md-6">
-                <label class="form-label">Televisão</label>
-                <input class="form-control" list="tv" type="text" name="tv"
-                    value="<?= $data->tv ?? '' ?>">
-                <datalist id="tv">
-                    <option value="LG">
-                    <option value="Sony">
-                    <option value="Samsung">
-                    <option value="Philco">
-                    <option value="AOC">
-                </datalist>
-            </div>
-
-            <div class="col-md-6 mt-3">
-                <label for="caixa_som" class="form-label">Caixa de Som</label>
-                <input class="form-control" list="caixa_som" type="text" name="caixa_som"
-                    value="<?= $data->caixa_som ?? '' ?>">
-                <datalist id="caixa_som">
-                    <option value="Micro Lux">
-                    <option value="MKD 3.0">
-                    <option value="Shure coconut">
-                    <option value="HMMs">
-                    <option value="Audio Top">
-                </datalist>
-            </div>
-
-            <div class="col-md-6 mt-3">
-                <label for="iluminacao" class="form-label">Iluminação</label>
-                <input class="form-control" list="iluminacao" type="text" name="iluminacao"
-                    value="<?= $data->iluminacao ?? '' ?>">
-                <datalist id="iluminacao">
-                    <option value="Vermelho">
-                    <option value="Azul">
-                    <option value="Verde">
-                    <option value="Roxo">
-                    <option value="Colorido">
-                </datalist>
-            </div>
+                <datalist id=" marca">
+                <option value="Micro Solution MHD">
+                <option value="Micro Solution MHD 3.0">
+                <option value="Shure SM58">
+                <option value="HyperX QuadCast">
+                <option value="Audio-Technica AT2020">
+            </datalist>
         </div>
+                
+            </datalist>
+        </div>
+
+        <div class="col-4">
+            <label for="nome" class="form-label">modelo</label>
+            <input class="form-control" list="modelo" type="text" name="modelo"
+                   value="<?= $data->modelo ?? '' ?>">
+            <datalist id="nome">
+                <option value="Micro evolution">
+                <option value="Micro evolution 3.0">
+                <option value="Shure coconut">
+                <option value="HQC">
+                <option value="Audio Top">
+            </datalist>
+        </div>
+
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-4">
+            <label for="quantidade" class="form-label">quantidade</label>
+            <input class="form-control" list="quantidade" type="text" name="quantidade"
+                   value="<?= $data->quantidade ?? '' ?>">
+            <datalist id="quantidade">
+                <option value="1">
+                <option value="2">
+                <option value="3">
+                <option value="4">
+                <option value="5">
+            </datalist>
+        </div>
+    </div>
 
         <div class="row">
             <div class="col mt-4">

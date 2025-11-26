@@ -89,6 +89,5 @@ include './db.class.php';
     </div>
 </div>
 
-<?php
-include './footer.php';
+<?php include __DIR__ . '/footer.php'; ?>
 ?>

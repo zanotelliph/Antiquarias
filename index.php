@@ -1,7 +1,8 @@
 <?php
+session_start();
 
-include "./site/admin/header.php";
-include "./site/admin/db.class.php";
+include __DIR__ . '/site/admin/header.php';
+include __DIR__ . '/site/admin/db.class.php';
 
     $db = new db("index");
     session_start();
@@ -60,25 +61,12 @@ iframe {
     box-shadow: 0 0 15px #00f7ff;
 }
 
-.carousel-item img {
-    box-shadow: 0 0 20px #00ffcc;
-    border-radius: 10px;
-}
 </style>
 
 <div class="row mb-5">
     <div class="col-12">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="img/menta.jpg" class="d-block w-100" style="max-height: 400px;" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/lavanda.jpg" class="d-block w-100" style="max-height: 400px;" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="img/alecrim.jpg" class="d-block w-100" style="max-height: 400px;" alt="...">
-                </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="prev">
@@ -122,7 +110,7 @@ iframe {
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse2" aria-expanded="false"
                             aria-controls="flush-collapse2">
-                            Sou menor, posso participar?
+                            Sou de menor, posso participar?
                         </button>
                     </h2>
                     <div id="flush-collapse2" class="accordion-collapse collapse" data-bs-parent="#a1">
@@ -211,6 +199,5 @@ iframe {
     </div>
 </div>
 
-<?php
-include "./site/admin/footer.php";
+<?php include __DIR__ . '/site/admin/footer.php'; ?>
 ?>

@@ -23,16 +23,17 @@ if (!empty($_POST)) {
 <div class="container mt-4">
     <h3>Dados de usuário:</h3>
 
-    <form action="./UsuarioList.php" method="post">
-        <div class="row">
-            <div class="col-md-3">
-                <select name="tipo" class="form-select">
-                    <option value="nome">Nome</option>
-                    <option value="telefone">Telefone</option>
-                    <option value="email">Email</option>
-                    <option value="login">Login</option>
-                </select>
-            </div>
+<form action="./UsuarioList.php" method="post">
+    <div class="row">
+        <div class="col">
+            <select name="usuario" class="form-select">
+                <option value="nome">nome</option>
+                <option value="telefone">Telefone</option>
+                <option value="email">Email</option>
+                <option value="login">login</option>
+                <option value="senha">senha</option>
+            </select>
+        </div>
 
             <div class="col-md-6">
                 <input type="text" name="valor" placeholder="Pesquisar" class="form-control">

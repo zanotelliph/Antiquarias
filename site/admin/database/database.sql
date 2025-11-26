@@ -11,42 +11,48 @@ CREATE DATABASE IF NOT EXISTS `antiquarias` /*!40100 DEFAULT CHARACTER SET utf8m
 USE `antiquarias`;
 
 CREATE TABLE IF NOT EXISTS `material` (
-  `idmaterial` int NOT NULL AUTO_INCREMENT,
-  `microfone` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `tv` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `caixa_som` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `iluminacao` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`idmaterial`)
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `modelo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `quantidade` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 CREATE TABLE IF NOT EXISTS `playlist` (
-  `idplaylist` int DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `artista` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `modo` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL
+  `modo` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 CREATE TABLE IF NOT EXISTS `sala` (
-  `idsala` int DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `quantidade_pessoas` int DEFAULT NULL,
-  `quantidade_salas` int DEFAULT NULL,
-  `comida` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL
+  `quantidade_poltronas` int DEFAULT NULL,
+  `comida` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 CREATE TABLE IF NOT EXISTS `tempo` (
-  `idtempo` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `horas` time DEFAULT NULL,
   `horario` datetime DEFAULT NULL,
-  PRIMARY KEY (`idtempo`)
+  `id_sala` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_sala` (`id_sala`),
+  CONSTRAINT `id_sala` FOREIGN KEY (`id_sala`) REFERENCES `sala` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `idusuarios` int DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `telefone` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `email` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `login` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `senha` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+  `senha` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

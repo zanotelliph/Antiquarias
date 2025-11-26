@@ -48,32 +48,33 @@
         <form action="UsuarioForm.php" method="post">
             <input type="hidden" name="idusuarios" value="<?= $data->idusuarios ?? '' ?>">
 
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <label class="form-label">Nome</label>
-                    <input class="form-control" type="text" name="nome" value="<?= $data->nome ?? '' ?>" required>
-                </div>
-                
-                <div class="col-md-6">
-                    <label class="form-label">Telefone</label>
-                    <input class="form-control" type="text" name="telefone" value="<?= $data->telefone ?? '' ?>" required>
-                </div>
-                
-                <div class="col-md-6">
-                    <label class="form-label">Email</label>
-                    <input class="form-control" type="email" name="email" value="<?= $data->email ?? '' ?>" required>
-                </div>
-                
-                <div class="col-md-6">
-                    <label class="form-label">Login</label>
-                    <input class="form-control" type="text" name="login" value="<?= $data->login ?? '' ?>" required>
-                </div>
-                
-                <div class="col-md-12">
-                    <label class="form-label">Senha <?= !empty($data) ? '(Deixe em branco para manter a atual)' : '' ?></label>
-                    <input class="form-control" type="password" name="senha">
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-4">
+            <label for="" class="form-label">nome</label>
+            <input class="form-control" type="text" name="nome" value="<?= $data->nome ??
+                '' ?>">
+        </div>
+    <div class="col-4">
+            <label for="" class="form-label">Telefone </label>
+            <input class="form-control" type="text" name="telefone" value="<?= $data->telefone ??
+                '' ?>">
+        </div>
+        <div class="col-4">
+            <label for="" class="form-label">Email</label>
+            <input class="form-control" type="text" name="email" value="<?= $data->email ??
+                '' ?>">
+        </div>
+        <div class="col-4">
+            <label for="" class="form-label">Login</label>
+            <input class="form-control" type="text" name="login" value="<?= $data->login ??
+                '' ?>">
+        </div>
+        <div class="col-4">
+            <label for="" class="form-label">Senha</label>
+            <input class="form-control" type="password" name="senha" value="<?= $data->senha ??
+                '' ?>">
+        </div>
+    </div>
 
             <div class="row mt-4">
                 <div class="col">
