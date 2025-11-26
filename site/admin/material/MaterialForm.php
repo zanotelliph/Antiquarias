@@ -69,7 +69,7 @@ if (!empty($_POST)) {
             
         <div class="col-4">
             <label class="form-label">marca</label>
-            <input class="form-control" list="nome" type="marca" name="marca"
+            <input class="form-control" list="marca" type="marca" name="marca"
                    value="<?= $data->marca ?? '' ?>">
             <datalist id="marca">
 
