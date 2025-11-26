@@ -2,7 +2,7 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('playlist', 'idplaylist');
+$db = new db('playlist', 'id');
 $db->checkLogin();
 
 if (!empty($_GET['id'])) {
@@ -59,13 +59,13 @@ if (!empty($_POST)) {
                     if($dados) {
                         foreach ($dados as $item) {
                             echo "<tr>
-                                <th scope='row'>$item->idplaylist</th>
+                                <th scope='row'>$item->id</th>
                                 <td>$item->titulo</td>
                                 <td>$item->artista</td>
                                 <td>$item->modo</td>
                                 <td>
-                                    <a href='./PlaylistForm.php?id=$item->idplaylist' class='btn btn-warning btn-sm'>Editar</a>
-                                    <a href='./PlaylistList.php?id=$item->idplaylist'
+                                    <a href='./PlaylistForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a>
+                                    <a href='./PlaylistList.php?id=$item->id'
                                        onclick='return confirm(\"Deseja realmente excluir?\")'
                                        class='btn btn-danger btn-sm'>
                                        Excluir

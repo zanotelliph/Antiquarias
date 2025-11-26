@@ -2,7 +2,7 @@
 include './header.php';
 include './db.class.php';
 
-$db = new db('usuario', 'idusuarios');
+$db = new db('usuario', 'ids');
 
 if (!empty($_POST)) {
     if (empty($_POST['login']) || empty($_POST['senha'])) {
@@ -14,7 +14,7 @@ if (!empty($_POST)) {
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();
             }
-            $_SESSION['usuario_id'] = $result->idusuarios;
+            $_SESSION['usuario_id'] = $result->ids;
             $_SESSION['login'] = $result->login;
             $_SESSION['nome'] = $result->nome;
 

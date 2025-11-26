@@ -2,7 +2,7 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('playlist', 'idplaylist');
+$db = new db('playlist', 'id');
 $data = null;
 
 if (!empty($_GET['id'])) {
@@ -14,7 +14,7 @@ if (!empty($_POST)) {
         if (empty($_POST['titulo']) || empty($_POST['artista']) || empty($_POST['modo'])) {
             echo "<div class='alert alert-danger'>Preencha todos os campos obrigatórios!</div>";
         } else {
-            if (!empty($_POST['idplaylist'])) {
+            if (!empty($_POST['id'])) {
                 $db->update($_POST);
             } else {
                 $db->store($_POST);
@@ -35,7 +35,7 @@ if (!empty($_POST)) {
     <h3><?= !empty($data) ? 'Editar' : 'Nova' ?> Playlist:</h3>
     
     <form action="PlaylistForm.php" method="post">
-        <input type="hidden" name="idplaylist" value="<?= $data->idplaylist ?? '' ?>">
+        <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
         <div class="row g-3">
             <div class="col-md-6">

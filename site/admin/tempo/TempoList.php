@@ -2,7 +2,7 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('tempo', 'idtempo');
+$db = new db('tempo', 'id');
 $db->checkLogin();
 
 if (!empty($_GET['id'])) {
@@ -60,12 +60,12 @@ if (!empty($_POST)) {
                 <?php if (!empty($dados)): ?>
                     <?php foreach ($dados as $item): ?>
                         <tr>
-                            <th scope="row"><?= $item->idtempo ?></th>
+                            <th scope="row"><?= $item->id ?></th>
                             <td><?= $item->horas ?></td>
                             <td><?= $item->horario ?></td>
                             <td>
-                                <a href="./TempoForm.php?id=<?= $item->idtempo ?>" class="btn btn-warning btn-sm me-2">Editar</a>
-                                <a href="./TempoList.php?id=<?= $item->idtempo ?>"
+                                <a href="./TempoForm.php?id=<?= $item->id ?>" class="btn btn-warning btn-sm me-2">Editar</a>
+                                <a href="./TempoList.php?id=<?= $item->id ?>"
                                    onclick="return confirm('Deseja realmente excluir este registro?')"
                                    class="btn btn-danger btn-sm">Excluir</a>
                             </td>

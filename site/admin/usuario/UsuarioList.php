@@ -2,7 +2,7 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('usuario', 'idusuarios');
+$db = new db('usuario', 'ids');
 
 $db->checkLogin();
 
@@ -64,14 +64,14 @@ if (!empty($_POST)) {
                     if($dados) {
                         foreach ($dados as $item) {
                             echo "<tr>
-                                <th scope='row'>$item->idusuarios</th>
+                                <th scope='row'>$item->ids</th>
                                 <td>$item->nome</td>
                                 <td>$item->telefone</td>
                                 <td>$item->email</td>
                                 <td>$item->login</td>     
                                 <td>
-                                    <a href='./UsuarioForm.php?id=$item->idusuarios' class='btn btn-warning btn-sm'>Editar</a>
-                                    <a href='./UsuarioList.php?id=$item->idusuarios'
+                                    <a href='./UsuarioForm.php?id=$item->ids' class='btn btn-warning btn-sm'>Editar</a>
+                                    <a href='./UsuarioList.php?id=$item->ids'
                                        onclick='return confirm(\"Deseja realmente excluir?\")'
                                        class='btn btn-danger btn-sm'>
                                        Excluir

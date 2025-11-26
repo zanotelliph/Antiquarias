@@ -147,16 +147,16 @@ if (!empty($_POST)) {
                         <?php if (!empty($dados)): ?>
                             <?php foreach ($dados as $item): ?>
                                 <tr>
-                                    <th scope="row"><?= $item->idmaterial ?></th>
+                                    <th scope="row"><?= $item->idl ?></th>
                                     <td><?= $item->tipo ?></td>
                                     <td><?= $item->marca ?></td>
                                     <td><?= $item->modelo ?></td>
                                     <td><?= $item->Quantidade ?></td>
                                     <td>
-                                        <a href="./MaterialForm.php?id=<?= $item->idmaterial ?>" class="btn btn-warning btn-sm">
+                                        <a href="./MaterialForm.php?id=<?= $item->idl ?>" class="btn btn-warning btn-sm">
                                             Editar
                                         </a>
-                                        <a href="./MaterialList.php?action=delete&id=<?= $item->idmaterial ?>"
+                                        <a href="./MaterialList.php?action=delete&id=<?= $item->idl ?>"
                                            class="btn btn-danger btn-sm"
                                            onclick="return confirm('Deseja realmente excluir este material?');">
                                             Excluir
