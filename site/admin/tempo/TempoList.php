@@ -2,10 +2,10 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('tempo', 'id');
+$db = new db('tempo', 'idtempo');
 $db->checkLogin();
 
-if (!empty($_GET['id'])) {
+if (!empty($_GET['id']) && !empty($_GET['action']) && $_GET['action'] === 'delete') {
     $db->destroy($_GET['id']);
     header('Location: TempoList.php');
     exit;
@@ -60,12 +60,12 @@ if (!empty($_POST)) {
                 <?php if (!empty($dados)): ?>
                     <?php foreach ($dados as $item): ?>
                         <tr>
-                            <th scope="row"><?= $item->id ?></th>
+                            <th scope="row"><?= $item->idtempo ?></th>
                             <td><?= $item->horas ?></td>
                             <td><?= $item->horario ?></td>
                             <td>
-                                <a href="./TempoForm.php?id=<?= $item->id ?>" class="btn btn-warning btn-sm me-2">Editar</a>
-                                <a href="./TempoList.php?id=<?= $item->id ?>"
+                                <a href="./TempoForm.php?id=<?= $item->idtempo ?>" class="btn btn-warning btn-sm me-2">Editar</a>
+                                <a href="./TempoList.php?action=delete&id=<?= $item->idtempo ?>"
                                    onclick="return confirm('Deseja realmente excluir este registro?')"
                                    class="btn btn-danger btn-sm">Excluir</a>
                             </td>

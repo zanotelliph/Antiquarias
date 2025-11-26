@@ -2,7 +2,7 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('tempo', 'id');
+$db = new db('tempo', 'idtempo');
 $data = null;
 $errors = [];
 
@@ -27,8 +27,8 @@ if (!empty($_POST)) {
                 'horario' => $_POST['horario'],
             ];
 
-            if (!empty($_POST['id'])) {
-                $payload['id'] = $_POST['id'];
+            if (!empty($_POST['idtempo'])) {
+                $payload['idtempo'] = $_POST['idtempo'];
                 $db->update($payload);
                 echo "<div class='alert alert-success'>Agendamento atualizado com sucesso!</div>";
             } else {
@@ -64,7 +64,7 @@ if (!empty($data->horario)) {
 <div class="container mt-4">
     <h3><?= !empty($data) ? 'Editar' : 'Novo' ?> Agendamento:</h3>
     <form action="TempoForm.php" method="post">
-        <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
+        <input type="hidden" name="idtempo" value="<?= $data->idtempo ?? '' ?>">
 
         <div class="row g-3">
             <div class="col-md-4">
@@ -88,4 +88,3 @@ if (!empty($data->horario)) {
 </form>
 
 <?php include "../footer.php"; ?>
-?>

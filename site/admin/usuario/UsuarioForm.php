@@ -2,7 +2,7 @@
     include "../header.php";
     include "../db.class.php";
 
-    $db = new db('usuario', 'ids');
+    $db = new db('usuario', 'idusuarios');
     $data = null;
 
     if (!empty($_GET['id'])) {
@@ -21,7 +21,7 @@
                     unset($_POST['senha']);
                 }
 
-                if (!empty($_POST['ids'])) {
+                if (!empty($_POST['idusuarios'])) {
                     $db->update($_POST);
                 } else {
                     if(empty($_POST['senha'])) {
@@ -46,7 +46,7 @@
         <h3><?= !empty($data) ? 'Editar' : 'Novo' ?> Usuário:</h3>
         
         <form action="UsuarioForm.php" method="post">
-            <input type="hidden" name="ids" value="<?= $data->ids ?? '' ?>">
+            <input type="hidden" name="idusuarios" value="<?= $data->idusuarios ?? '' ?>">
 
     <div class="row">
         <div class="col-4">

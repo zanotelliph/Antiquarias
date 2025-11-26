@@ -2,10 +2,10 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('playlist', 'id');
+$db = new db('playlist', 'idplaylist');
 $db->checkLogin();
 
-if (!empty($_GET['id'])) {
+if (!empty($_GET['id']) && !empty($_GET['action']) && $_GET['action'] === 'delete') {
     $db->destroy($_GET['id']);
     header('Location: PlaylistList.php');
     exit;
@@ -59,13 +59,13 @@ if (!empty($_POST)) {
                     if($dados) {
                         foreach ($dados as $item) {
                             echo "<tr>
-                                <th scope='row'>$item->id</th>
+                                <th scope='row'>$item->idplaylist</th>
                                 <td>$item->titulo</td>
                                 <td>$item->artista</td>
                                 <td>$item->modo</td>
                                 <td>
-                                    <a href='./PlaylistForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a>
-                                    <a href='./PlaylistList.php?id=$item->id'
+                                    <a href='./PlaylistForm.php?id=$item->idplaylist' class='btn btn-warning btn-sm'>Editar</a>
+                                    <a href='./PlaylistList.php?action=delete&id=$item->idplaylist'
                                        onclick='return confirm(\"Deseja realmente excluir?\")'
                                        class='btn btn-danger btn-sm'>
                                        Excluir

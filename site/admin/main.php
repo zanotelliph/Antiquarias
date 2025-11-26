@@ -2,7 +2,7 @@
 include './header.php';
 include './db.class.php';
 
-$db = new db('usuario', 'ids');
+$db = new db('usuario', 'idusuarios');
 $db->checkLogin();
 ?>
 

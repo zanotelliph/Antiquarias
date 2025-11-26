@@ -13,118 +13,98 @@ if (!empty($_POST)) {
     try {
         $errors = [];
 
-        if (empty($_POST['tipo'])) {
-            $errors[] = 'O tipo é obrigatório';
+        if (empty($_POST['microfone'])) {
+            $errors[] = 'O microfone é obrigatório';
         }
 
-        if (empty($_POST['marca'])) {
-            $errors[] = 'A marca é obrigatória';
-        }
+        if (empty($errors)) {
+            if (empty($_POST['id'])) {
+                $db->store($_POST);
+                echo "<div class='alert alert-success'>Registro Salvo com sucesso!</div>";
+            } else {
+                $db->update($_POST);
+                echo "<div class='alert alert-success'>Registro Atualizado com sucesso!</div>";
+            }
 
-        if (empty($_POST['modelo'])) {
-            $errors[] = 'A nome é obrigatória';
-        }
-
-        if (empty($_POST['quantidade'])) {
-            $errors[] = 'A quantidade é obrigatória';
-        }
-
-        if (empty($_POST['id'])) {
-            $db->store($_POST);
-            echo "<div class='alert alert-success'>Registro Salvo com sucesso!</div>";
+            echo "<script>
+                    setTimeout(() => window.location.href = 'MaterialList.php', 1000);
+                  </script>";
         } else {
-            $db->update($_POST);
-            echo "<div class='alert alert-success'>Registro Atualizado com sucesso!</div>";
+            echo "<div class='alert alert-danger'>" . implode('<br>', $errors) . "</div>";
         }
-
-        echo "<script>
-                setTimeout(() => window.location.href = 'MaterialList.php', 1000);
-              </script>";
 
     } catch (Exception $e) {
-        var_dump($errors, $e->getMessage());
+        var_dump($e->getMessage());
         exit();
     }
 }
 ?>
 
 <div class="container mt-4">
-    <h3>Materiais:</h3>
+    <h3><?= !empty($data) ? 'Editar' : 'Novo' ?> Material:</h3>
 
     <form action="MaterialForm.php" method="post">
-
         <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
-        <div class="row">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Microfone</label>
+                <input class="form-control" list="microfone_list" type="text" name="microfone"
+                       value="<?= $data->microfone ?? '' ?>">
+                <datalist id="microfone_list">
+                    <option value="Shure SM58">
+                    <option value="HyperX QuadCast">
+                    <option value="Audio-Technica AT2020">
+                    <option value="Blue Yeti">
+                    <option value="Rode NT1">
+                </datalist>
+            </div>
 
-        <div class="col-6">
-            <label class="form-label">Material</label>
-            <input class="form-control" list="tipo" type="text" name="tipo"
-                   value="<?= $data->tipo ?? '' ?>">
-                   <datalist id="tipo">
+            <div class="col-md-6">
+                <label class="form-label">TV</label>
+                <input class="form-control" list="tv_list" type="text" name="tv"
+                       value="<?= $data->tv ?? '' ?>">
+                <datalist id="tv_list">
+                    <option value="LG 50'">
+                    <option value="Samsung 55'">
+                    <option value="Sony 60'">
+                    <option value="Philco 42'">
+                    <option value="AOC 32'">
+                </datalist>
+            </div>
 
-                       <option value="tipo">
-                           <option value="Microfone"></option>
-                           <option value="TV">
-                               <option value="Iluminação">
-                                   <option value="Caixa de Som"></option>
-                                </datalist>
-            
-        <div class="col-4">
-            <label class="form-label">marca</label>
-            <input class="form-control" list="marca" type="marca" name="marca"
-                   value="<?= $data->marca ?? '' ?>">
-            <datalist id="marca">
+            <div class="col-md-6">
+                <label class="form-label">Caixa de Som</label>
+                <input class="form-control" list="caixa_som_list" type="text" name="caixa_som"
+                       value="<?= $data->caixa_som ?? '' ?>">
+                <datalist id="caixa_som_list">
+                    <option value="JBL PartyBox">
+                    <option value="Sony MHC">
+                    <option value="LG XBOOM">
+                    <option value="Philips Party Speaker">
+                </datalist>
+            </div>
 
-                <datalist id=" marca">
-                <option value="Micro Solution MHD">
-                <option value="Micro Solution MHD 3.0">
-                <option value="Shure SM58">
-                <option value="HyperX QuadCast">
-                <option value="Audio-Technica AT2020">
-            </datalist>
+            <div class="col-md-6">
+                <label class="form-label">Iluminação</label>
+                <input class="form-control" list="iluminacao_list" type="text" name="iluminacao"
+                       value="<?= $data->iluminacao ?? '' ?>">
+                <datalist id="iluminacao_list">
+                    <option value="LED RGB">
+                    <option value="Strobo">
+                    <option value="Laser">
+                    <option value="Moving Head">
+                    <option value="Par LED">
+                </datalist>
+            </div>
         </div>
-                
-            </datalist>
-        </div>
 
-        <div class="col-4">
-            <label for="modelo" class="form-label">modelo</label>
-            <input class="form-control" list="modelo" type="text" name="modelo"
-                   value="<?= $data->modelo ?? '' ?>">
-            <datalist id="modelo">
-                <option value="Micro evolution">
-                <option value="Micro evolution 3.0">
-                <option value="Shure coconut">
-                <option value="HQC">
-                <option value="Audio Top">
-            </datalist>
-        </div>
-
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-4">
-            <label for="quantidade" class="form-label">quantidade</label>
-            <input class="form-control" list="quantidade" type="text" name="quantidade"
-                   value="<?= $data->quantidade ?? '' ?>">
-            <datalist id="quantidade">
-                <option value="1">
-                <option value="2">
-                <option value="3">
-                <option value="4">
-                <option value="5">
-            </datalist>
-        </div>
-    </div>
-
-        <div class="row">
-            <div class="col mt-4">
+        <div class="row mt-4">
+            <div class="col">
                 <button type="submit" class="btn btn-success">Salvar</button>
                 <a href="./MaterialList.php" class="btn btn-primary">Voltar</a>
             </div>
         </div>
-
     </form>
 </div>
 

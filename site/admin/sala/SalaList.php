@@ -2,91 +2,86 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('sala', 'id');
-$data = null;
+$db = new db('sala', 'idsala');
+$db->checkLogin();
 
-if (!empty($_GET['id'])) {
-    $data = $db->find($_GET['id']);
+if (!empty($_GET['id']) && !empty($_GET['action']) && $_GET['action'] === 'delete') {
+    $db->destroy($_GET['id']);
+    header('Location: SalaList.php');
+    exit;
 }
 
-if (!empty($_POST)) { 
-    try {
-        if (empty($_POST['quantidade_pessoas']) || empty($_POST['quantidade_salas'])) {
-            echo "<div class='alert alert-danger'>Preencha os campos obrigatórios!</div>";
-        } else {
-            if (!empty($_POST['id'])) {
-                $db->update($_POST);
-            } else {
-                $db->store($_POST);
-            }
-
-            header('Location: SalaList.php');
-            exit;
-        }
-
-    } catch (Exception $e) {
-        var_dump($e->getMessage());
-        exit();
-    }
+if (!empty($_POST)) {
+    $dados = $db->search([
+        'tipo'  => $_POST['tipo'] ?? 'quantidade_pessoas',
+        'valor' => $_POST['valor'] ?? ''
+    ]);
+} else {
+    $dados = $db->all();
 }
 ?>
 
 <div class="container mt-4">
-    <h3>Sala:</h3>
-    
-    <form action="SalaForm.php" method="post">
-        <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
+    <h3>Listagem de Salas:</h3>
 
-        <div class="row">
-            <div class="col-md-6">
-                <label class="form-label">Quantidade de pessoas</label>
-                <input class="form-control" list="quantidade_pessoas" type="text" name="quantidade_pessoas" 
-                       value="<?= $data->quantidade_pessoas ?? '' ?>" required>
-                <datalist id="quantidade_pessoas">
-                    <option value="1">
-                    <option value="4">
-                    <option value="7">
-                    <option value="10">
-                    <option value="15">
-                </datalist>
+    <form action="./SalaList.php" method="post" class="mb-4">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-3">
+                <label class="form-label">Campo</label>
+                <select name="tipo" class="form-select">
+                    <option value="quantidade_pessoas">Quantidade de Pessoas</option>
+                    <option value="quantidade_salas">Quantidade de Salas</option>
+                    <option value="comida">Comida</option>
+                </select>
             </div>
 
-            <div class="col-md-6">
-                <label class="form-label">Quantidade de poltronas</label>
-                <input class="form-control" list="quantidade_poltronas" type="text" name="quantidade_poltronas" 
-                       value="<?= $data->quantidade_salas ?? '' ?>" required>
-                <datalist id="quantidade_poltronas">
-                    <option value="1">
-                    <option value="2">
-                    <option value="3">
-                    <option value="4">
-                    <option value="5"></option>
-
-                         </option>
-                </datalist>
-                <small class="text-warning">* Admin deve verificar disponibilidade</small>
+            <div class="col-md-5">
+                <label class="form-label">Valor</label>
+                <input type="text" name="valor" placeholder="Pesquisar" class="form-control">
             </div>
 
-            <div class="col-md-12 mt-3">
-                <label class="form-label">Comida</label>
-                <input class="form-control" list="comida" type="text" name="comida" 
-                       value="<?= $data->comida ?? '' ?>">
-                <datalist id="comida">
-                    <option value="Pizza">
-                    <option value="Frango Frito">
-                    <option value="Batata Frita">
-                </datalist>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary me-2">Buscar</button>
+                <a href="./SalaForm.php" class="btn btn-success">Cadastrar</a>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col mt-4">
-                <button type="submit" class="btn btn-success">Salvar</button>
-                <a href="./SalaList.php" class="btn btn-primary">Voltar</a>
-            </div>
-        </div>
-
     </form>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover text-white">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Qtd. Pessoas</th>
+                    <th scope="col">Qtd. Salas</th>
+                    <th scope="col">Comida</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($dados)): ?>
+                    <?php foreach ($dados as $item): ?>
+                        <tr>
+                            <th scope="row"><?= $item->idsala ?></th>
+                            <td><?= $item->quantidade_pessoas ?></td>
+                            <td><?= $item->quantidade_salas ?></td>
+                            <td><?= $item->comida ?></td>
+                            <td>
+                                <a href="./SalaForm.php?id=<?= $item->idsala ?>" class="btn btn-warning btn-sm me-2">Editar</a>
+                                <a href="./SalaList.php?action=delete&id=<?= $item->idsala ?>"
+                                   onclick="return confirm('Deseja realmente excluir esta sala?')"
+                                   class="btn btn-danger btn-sm">Excluir</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="5" class="text-center">Nenhuma sala cadastrada.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <?php include "../footer.php"; ?>
