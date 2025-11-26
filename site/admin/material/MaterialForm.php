@@ -18,7 +18,7 @@ if (!empty($_POST)) {
         }
 
         if (empty($_POST['marca'])) {
-            $errors[] = 'A tipo é obrigatória';
+            $errors[] = 'A marca é obrigatória';
         }
 
         if (empty($_POST['modelo'])) {
@@ -61,11 +61,14 @@ if (!empty($_POST)) {
             <label class="form-label">Material</label>
             <input class="form-control" list="tipo" type="text" name="tipo"
                    value="<?= $data->tipo ?? '' ?>">
-                <option value="tipo">
-                <option value="Microfone"></option>
-                <option value="TV">
-                <option value="Iluminação">
-                <option value="Caixa de Som"></option>
+                   <datalist id="tipo">
+
+                       <option value="tipo">
+                           <option value="Microfone"></option>
+                           <option value="TV">
+                               <option value="Iluminação">
+                                   <option value="Caixa de Som"></option>
+                                </datalist>
             
         <div class="col-4">
             <label class="form-label">marca</label>
