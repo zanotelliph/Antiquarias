@@ -2,7 +2,7 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('material', 'idmaterial');
+$db = new db('material', 'id');
 $data = null;
 $dados = [];
 
@@ -22,23 +22,23 @@ if (!empty($_POST)) {
     try {
         $errors = [];
 
-        if (empty($_POST['microfone'])) {
-            $errors[] = 'O Microfone é obrigatório';
+        if (empty($_POST['Tipo'])) {
+            $errors[] = 'O Tipo é obrigatório';
         }
 
-        if (empty($_POST['tv'])) {
-            $errors[] = 'A Televisão é obrigatória';
+        if (empty($_POST['Marca'])) {
+            $errors[] = 'A Marca é obrigatória';
         }
 
-        if (empty($_POST['caixa_som'])) {
+        if (empty($_POST['modelo'])) {
             $errors[] = 'A Caixa de som é obrigatória';
         }
 
-        if (empty($_POST['iluminacao'])) {
+        if (empty($_POST['Quantidade'])) {
             $errors[] = 'A Iluminação é obrigatória';
         }
 
-        if (empty($_POST['idmaterial'])) {
+        if (empty($_POST['id'])) {
             $db->store($_POST);
             echo "<div class='alert alert-success'>Registro Salvo com sucesso!</div>";
         } else {
@@ -62,25 +62,25 @@ if (!empty($_POST)) {
 
     <form action="MaterialForm.php" method="post">
 
-        <input type="hidden" name="idmaterial" value="<?= $data->idmaterial ?? '' ?>">
+        <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
         <div class="row">
 
             <div class="col-md-6">
-                <label class="form-label">Microfone</label>
-                <input class="form-control" list="microfone" type="text" name="microfone"
-                    value="<?= $data->microfone ?? '' ?>">
-                <datalist id="microfone">
-                    <option value="Micro Solution MHD">
-                    <option value="Micro Solution MHD 3.0">
-                    <option value="Shure SM58">
-                    <option value="HyperX QuadCast">
-                    <option value="Audio-Technica AT2020">
+                <label class="form-label">tipo</label>
+                <input class="form-control" list="tipo" type="text" name="tipo"
+                    value="<?= $data->tipo ?? '' ?>">
+                <datalist id="tipo">
+                    <option value="Microfone">
+                    <option value="Televisão">
+                    <option value="Iluminação">
+                    <option value="Caixa de som ">
+                   
                 </datalist>
             </div>
 
             <div class="col-md-6">
-                <label class="form-label">Televisão</label>
+                <label class="form-label">Marca</label>
                 <input class="form-control" list="tv" type="text" name="tv"
                     value="<?= $data->tv ?? '' ?>">
                 <datalist id="tv">
@@ -93,10 +93,10 @@ if (!empty($_POST)) {
             </div>
 
             <div class="col-md-6 mt-3">
-                <label for="caixa_som" class="form-label">Caixa de Som</label>
-                <input class="form-control" list="caixa_som" type="text" name="caixa_som"
-                    value="<?= $data->caixa_som ?? '' ?>">
-                <datalist id="caixa_som">
+                <label for="modelo" class="form-label">Modelo</label>
+                <input class="form-control" list="modelo" type="text" name="modelo"
+                    value="<?= $data->modelo ?? '' ?>">
+                <datalist id="modelo">
                     <option value="Micro Lux">
                     <option value="MKD 3.0">
                     <option value="Shure coconut">
@@ -106,15 +106,15 @@ if (!empty($_POST)) {
             </div>
 
             <div class="col-md-6 mt-3">
-                <label for="iluminacao" class="form-label">Iluminação</label>
-                <input class="form-control" list="iluminacao" type="text" name="iluminacao"
-                    value="<?= $data->iluminacao ?? '' ?>">
-                <datalist id="iluminacao">
-                    <option value="Vermelho">
-                    <option value="Azul">
-                    <option value="Verde">
-                    <option value="Roxo">
-                    <option value="Colorido">
+                <label for="Quantidade" class="form-label">Quantidade</label>
+                <input class="form-control" list="Quantidade" type="text" name="Quantidade"
+                    value="<?= $data->Quantidade ?? '' ?>">
+                <datalist id="Quantidade">
+                    <option value="1">
+                    <option value="2">
+                    <option value="3">
+                    <option value="4">
+                    <option value="5">
                 </datalist>
             </div>
         </div>
@@ -136,11 +136,11 @@ if (!empty($_POST)) {
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Microfone</th>
-                            <th scope="col">Televisão</th>
-                            <th scope="col">Caixa de Som</th>
-                            <th scope="col">Iluminação</th>
-                            <th scope="col">Ações</th>
+                            <th scope="col">tipo</th>
+                            <th scope="col">marca</th>
+                            <th scope="col">modelo</th>
+                            <th scope="col">quantidade</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -148,10 +148,10 @@ if (!empty($_POST)) {
                             <?php foreach ($dados as $item): ?>
                                 <tr>
                                     <th scope="row"><?= $item->idmaterial ?></th>
-                                    <td><?= $item->microfone ?></td>
-                                    <td><?= $item->tv ?></td>
-                                    <td><?= $item->caixa_som ?></td>
-                                    <td><?= $item->iluminacao ?></td>
+                                    <td><?= $item->tipo ?></td>
+                                    <td><?= $item->marca ?></td>
+                                    <td><?= $item->modelo ?></td>
+                                    <td><?= $item->Quantidade ?></td>
                                     <td>
                                         <a href="./MaterialForm.php?id=<?= $item->idmaterial ?>" class="btn btn-warning btn-sm">
                                             Editar

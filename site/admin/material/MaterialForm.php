@@ -2,7 +2,7 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('material', 'idmaterial');
+$db = new db('material', 'id');
 $data = null;
 
 if (!empty($_GET['id'])) {
@@ -14,7 +14,7 @@ if (!empty($_POST)) {
         $errors = [];
 
         if (empty($_POST['tipo'])) {
-            $errors[] = 'O nome é obrigatório';
+            $errors[] = 'O tipo é obrigatório';
         }
 
         if (empty($_POST['marca'])) {
@@ -29,7 +29,7 @@ if (!empty($_POST)) {
             $errors[] = 'A quantidade é obrigatória';
         }
 
-        if (empty($_POST['idmaterial'])) {
+        if (empty($_POST['id'])) {
             $db->store($_POST);
             echo "<div class='alert alert-success'>Registro Salvo com sucesso!</div>";
         } else {
@@ -53,7 +53,7 @@ if (!empty($_POST)) {
 
     <form action="MaterialForm.php" method="post">
 
-        <input type="hidden" name="idmaterial" value="<?= $data->idmaterial ?? '' ?>">
+        <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
         <div class="row">
 
@@ -61,7 +61,8 @@ if (!empty($_POST)) {
             <label class="form-label">Material</label>
             <input class="form-control" list="tipo" type="text" name="tipo"
                    value="<?= $data->tipo ?? '' ?>">
-                <option value="Microfone">
+                <option value="tipo">
+                <option value="Microfone"></option>
                 <option value="TV">
                 <option value="Iluminação">
                 <option value="Caixa de Som"></option>

@@ -2,7 +2,7 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('sala', 'idsala');
+$db = new db('sala', 'id');
 $data = null;
 
 if (!empty($_GET['id'])) {
@@ -14,7 +14,7 @@ if (!empty($_POST)) {
         if (empty($_POST['quantidade_pessoas']) || empty($_POST['quantidade_salas'])) {
             echo "<div class='alert alert-danger'>Preencha os campos obrigatórios!</div>";
         } else {
-            if (!empty($_POST['idsala'])) {
+            if (!empty($_POST['id'])) {
                 $db->update($_POST);
             } else {
                 $db->store($_POST);
@@ -35,7 +35,7 @@ if (!empty($_POST)) {
     <h3>Sala:</h3>
     
     <form action="SalaForm.php" method="post">
-        <input type="hidden" name="idsala" value="<?= $data->idsala ?? '' ?>">
+        <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
         <div class="row">
             <div class="col-md-6">
@@ -52,10 +52,10 @@ if (!empty($_POST)) {
             </div>
 
             <div class="col-md-6">
-                <label class="form-label">Quantidade de Salas</label>
-                <input class="form-control" list="quantidade_salas" type="text" name="quantidade_salas" 
-                       value="<?= $data->quantidade_salas ?? '' ?>" required>
-                <datalist id="quantidade_salas">
+                <label class="form-label">Quantidade de poltronas</label>
+                <input class="form-control" list="quantidade_poltronas" type="text" name="quantidade_poltronas" 
+                       value="<?= $data->quantidade_poltronas ?? '' ?>" required>
+                <datalist id="quantidade_poltronas">
                     <option value="1">
                     <option value="2">
                     <option value="3">
