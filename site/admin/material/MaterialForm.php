@@ -71,7 +71,7 @@ if (!empty($_POST)) {
             <label class="form-label">marca</label>
             <input class="form-control" list="nome" type="marca" name="marca"
                    value="<?= $data->marca ?? '' ?>">
-            <datalist id="tipo">
+            <datalist id="marca">
 
                 <datalist id=" marca">
                 <option value="Micro Solution MHD">
@@ -86,10 +86,10 @@ if (!empty($_POST)) {
         </div>
 
         <div class="col-4">
-            <label for="nome" class="form-label">modelo</label>
+            <label for="modelo" class="form-label">modelo</label>
             <input class="form-control" list="modelo" type="text" name="modelo"
                    value="<?= $data->modelo ?? '' ?>">
-            <datalist id="nome">
+            <datalist id="modelo">
                 <option value="Micro evolution">
                 <option value="Micro evolution 3.0">
                 <option value="Shure coconut">
