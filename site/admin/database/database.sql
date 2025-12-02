@@ -10,50 +10,58 @@
 CREATE DATABASE IF NOT EXISTS `antiquarias` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `antiquarias`;
 
-CREATE TABLE IF NOT EXISTS `material` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `microfone` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `tv` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `caixa_som` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `iluminacao` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `tipo` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `marca` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `modelo` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL,
-  `quantidade` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
-CREATE TABLE IF NOT EXISTS `playlist` (
-  `idplaylist` int NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `artista` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `modo` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`idplaylist`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
-CREATE TABLE IF NOT EXISTS `sala` (
-  `idsala` int NOT NULL AUTO_INCREMENT,
-  `quantidade_pessoas` int DEFAULT NULL,
-  `quantidade_salas` int DEFAULT NULL,
-  `comida` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`idsala`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
-CREATE TABLE IF NOT EXISTS `tempo` (
-  `idtempo` int NOT NULL AUTO_INCREMENT,
-  `horas` time DEFAULT NULL,
-  `horario` datetime DEFAULT NULL,
-  PRIMARY KEY (`idtempo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
+-- Tabela de usuários
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `idusuarios` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `telefone` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `email` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `login` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `senha` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  PRIMARY KEY (`idusuarios`)
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- Tabela de produtos
+CREATE TABLE IF NOT EXISTS `produto` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL,
+  `tipo` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  `quantidade` int DEFAULT NULL,
+  `marca` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  `modelo` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- Tabela de playlists
+CREATE TABLE IF NOT EXISTS `playlist` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL,
+  `qtd_musicas` int DEFAULT NULL,
+  `tempo_total` time DEFAULT NULL,
+  `genero` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- Tabela de salas
+CREATE TABLE IF NOT EXISTS `sala` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL,
+  `capacidade` int DEFAULT NULL,
+  `usuario_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_sala_usuario` (`usuario_id`),
+  CONSTRAINT `fk_sala_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- Tabela de reservas (antiga tempo)
+CREATE TABLE IF NOT EXISTS `reserva` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `sala_id` int DEFAULT NULL,
+  `data_hora_inicio` datetime DEFAULT NULL,
+  `data_hora_fim` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_reserva_sala` (`sala_id`),
+  CONSTRAINT `fk_reserva_sala` FOREIGN KEY (`sala_id`) REFERENCES `sala` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

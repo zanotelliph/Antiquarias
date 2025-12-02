@@ -2,7 +2,16 @@
 include './header.php';
 include './db.class.php';
 
-$db = new db('usuario', 'idusuarios');
+$db = new db('usuario', 'id');
+
+if (!empty($_GET['logout'])) {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    session_destroy();
+    header('Location: login.php');
+    exit;
+}
 
 if (!empty($_POST)) {
     if (empty($_POST['login']) || empty($_POST['senha'])) {
@@ -14,7 +23,7 @@ if (!empty($_POST)) {
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();
             }
-            $_SESSION['usuario_id'] = $result->ids;
+            $_SESSION['usuario_id'] = $result->id;
             $_SESSION['login'] = $result->login;
             $_SESSION['nome'] = $result->nome;
 

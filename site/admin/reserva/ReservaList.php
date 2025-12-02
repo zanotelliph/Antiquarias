@@ -2,35 +2,46 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('tempo', 'idtempo');
+$db = new db('reserva', 'id');
+$dbSala = new db('sala', 'id');
 $db->checkLogin();
 
 if (!empty($_GET['id']) && !empty($_GET['action']) && $_GET['action'] === 'delete') {
     $db->destroy($_GET['id']);
-    header('Location: TempoList.php');
+    header('Location: ReservaList.php');
     exit;
 }
 
 if (!empty($_POST)) {
     $dados = $db->search([
-        'tipo'  => $_POST['tipo'] ?? 'horas',
+        'tipo'  => $_POST['tipo'] ?? 'sala_id',
         'valor' => $_POST['valor'] ?? ''
     ]);
 } else {
     $dados = $db->all();
 }
+
+// Criar array de salas para lookup
+$salas = [];
+$listaSalas = $dbSala->all();
+if ($listaSalas) {
+    foreach ($listaSalas as $s) {
+        $salas[$s->id] = $s->nome;
+    }
+}
 ?>
 
 <div class="container mt-4">
-    <h3>Agendamentos:</h3>
+    <h3>Reservas:</h3>
 
-    <form action="./TempoList.php" method="post" class="mb-4">
+    <form action="./ReservaList.php" method="post" class="mb-4">
         <div class="row g-3 align-items-end">
             <div class="col-md-3">
                 <label class="form-label">Campo</label>
                 <select name="tipo" class="form-select">
-                    <option value="horas">Tempo</option>
-                    <option value="horario">Data de agendamento</option>
+                    <option value="sala_id">Sala</option>
+                    <option value="data_hora_inicio">Data Início</option>
+                    <option value="data_hora_fim">Data Fim</option>
                 </select>
             </div>
 
@@ -41,7 +52,7 @@ if (!empty($_POST)) {
 
             <div class="col-md-4">
                 <button type="submit" class="btn btn-primary me-2">Buscar</button>
-                <a href="./TempoForm.php" class="btn btn-success">Cadastrar</a>
+                <a href="./ReservaForm.php" class="btn btn-success">Cadastrar</a>
             </div>
         </div>
     </form>
@@ -51,8 +62,9 @@ if (!empty($_POST)) {
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Duração da sessão</th>
-                    <th scope="col">Data do agendamento</th>
+                    <th scope="col">Sala</th>
+                    <th scope="col">Data/Hora Início</th>
+                    <th scope="col">Data/Hora Fim</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -60,20 +72,21 @@ if (!empty($_POST)) {
                 <?php if (!empty($dados)): ?>
                     <?php foreach ($dados as $item): ?>
                         <tr>
-                            <th scope="row"><?= $item->idtempo ?></th>
-                            <td><?= $item->horas ?></td>
-                            <td><?= $item->horario ?></td>
+                            <th scope="row"><?= $item->id ?></th>
+                            <td><?= $salas[$item->sala_id] ?? '-' ?></td>
+                            <td><?= $item->data_hora_inicio ? date('d/m/Y H:i', strtotime($item->data_hora_inicio)) : '-' ?></td>
+                            <td><?= $item->data_hora_fim ? date('d/m/Y H:i', strtotime($item->data_hora_fim)) : '-' ?></td>
                             <td>
-                                <a href="./TempoForm.php?id=<?= $item->idtempo ?>" class="btn btn-warning btn-sm me-2">Editar</a>
-                                <a href="./TempoList.php?action=delete&id=<?= $item->idtempo ?>"
-                                   onclick="return confirm('Deseja realmente excluir este registro?')"
+                                <a href="./ReservaForm.php?id=<?= $item->id ?>" class="btn btn-warning btn-sm me-2">Editar</a>
+                                <a href="./ReservaList.php?action=delete&id=<?= $item->id ?>"
+                                   onclick="return confirm('Deseja realmente excluir esta reserva?')"
                                    class="btn btn-danger btn-sm">Excluir</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="4" class="text-center">Nenhum agendamento cadastrado.</td>
+                        <td colspan="5" class="text-center">Nenhuma reserva cadastrada.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
@@ -82,3 +95,4 @@ if (!empty($_POST)) {
 </div>
 
 <?php include "../footer.php"; ?>
+

@@ -2,19 +2,23 @@
 include "../header.php";
 include "../db.class.php";
 
-$db = new db('sala', 'idsala');
+$db = new db('sala', 'id');
+$dbUsuario = new db('usuario', 'id');
 $data = null;
 
 if (!empty($_GET['id'])) {
     $data = $db->find($_GET['id']);
 }
 
+// Buscar lista de usuários para o select
+$usuarios = $dbUsuario->all();
+
 if (!empty($_POST)) { 
     try {
-        if (empty($_POST['quantidade_pessoas']) || empty($_POST['quantidade_salas'])) {
-            echo "<div class='alert alert-danger'>Preencha os campos obrigatórios!</div>";
+        if (empty($_POST['nome'])) {
+            echo "<div class='alert alert-danger'>O nome da sala é obrigatório!</div>";
         } else {
-            if (!empty($_POST['idsala'])) {
+            if (!empty($_POST['id'])) {
                 $db->update($_POST);
             } else {
                 $db->store($_POST);
@@ -32,46 +36,36 @@ if (!empty($_POST)) {
 ?>
 
 <div class="container mt-4">
-    <h3>Sala:</h3>
+    <h3><?= !empty($data) ? 'Editar' : 'Nova' ?> Sala:</h3>
     
     <form action="SalaForm.php" method="post">
-        <input type="hidden" name="idsala" value="<?= $data->idsala ?? '' ?>">
+        <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
-        <div class="row">
+        <div class="row g-3">
             <div class="col-md-6">
-                <label class="form-label">Quantidade de pessoas</label>
-                <input class="form-control" list="quantidade_pessoas" type="text" name="quantidade_pessoas" 
-                       value="<?= $data->quantidade_pessoas ?? '' ?>" required>
-                <datalist id="quantidade_pessoas">
-                    <option value="1">
-                    <option value="4">
-                    <option value="7">
-                    <option value="10">
-                    <option value="15">
-                </datalist>
+                <label class="form-label">Nome da Sala</label>
+                <input class="form-control" type="text" name="nome" 
+                       value="<?= $data->nome ?? '' ?>" required>
             </div>
 
             <div class="col-md-6">
-                <label class="form-label">Quantidade de salas</label>
-                <input class="form-control" list="quantidade_salas" type="text" name="quantidade_salas" 
-                       value="<?= $data->quantidade_salas ?? '' ?>" required>
-                <datalist id="quantidade_salas">
-                    <option value="1">
-                    <option value="2">
-                    <option value="3">
-                </datalist>
-                <small class="text-warning">* Admin deve verificar disponibilidade</small>
+                <label class="form-label">Capacidade (pessoas)</label>
+                <input class="form-control" type="number" name="capacidade" min="1"
+                       value="<?= $data->capacidade ?? '' ?>">
             </div>
 
-            <div class="col-md-12 mt-3">
-                <label class="form-label">Comida</label>
-                <input class="form-control" list="comida" type="text" name="comida" 
-                       value="<?= $data->comida ?? '' ?>">
-                <datalist id="comida">
-                    <option value="Pizza">
-                    <option value="Frango Frito">
-                    <option value="Batata Frita">
-                </datalist>
+            <div class="col-md-6">
+                <label class="form-label">Usuário Responsável</label>
+                <select class="form-select" name="usuario_id">
+                    <option value="">Selecione um usuário...</option>
+                    <?php if (!empty($usuarios)): ?>
+                        <?php foreach ($usuarios as $usuario): ?>
+                            <option value="<?= $usuario->id ?>" <?= ($data->usuario_id ?? '') == $usuario->id ? 'selected' : '' ?>>
+                                <?= $usuario->nome ?>
+                            </option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
             </div>
         </div>
 

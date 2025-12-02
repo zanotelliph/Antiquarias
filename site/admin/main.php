@@ -2,7 +2,7 @@
 include './header.php';
 include './db.class.php';
 
-$db = new db('usuario', 'idusuarios');
+$db = new db('usuario', 'id');
 $db->checkLogin();
 ?>
 
@@ -30,11 +30,11 @@ $db->checkLogin();
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-warning border-4">
                     <h5 class="card-title text-warning fw-bold">Playlists</h5>
-                    <p class="card-text">Cadastre Playlists novas.</p>
+                    <p class="card-text">Cadastre e gerencie playlists.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="<?= ADMIN_BASE_PATH ?>/playlist/PlaylistList.php" class="btn btn-warning">Gerenciar playlists</a>
-                        <a href="<?= ADMIN_BASE_PATH ?>/playlist/PlaylistForm.php" class="btn btn-outline-warning">Nova playlist</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/playlist/PlaylistList.php" class="btn btn-warning">Gerenciar Playlists</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/playlist/PlaylistForm.php" class="btn btn-outline-warning">Nova Playlist</a>
                     </div>
                 </div>
             </div>
@@ -44,11 +44,11 @@ $db->checkLogin();
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-success border-4">
                     <h5 class="card-title text-success fw-bold">Salas</h5>
-                    <p class="card-text">Gerencie as salas</p>
+                    <p class="card-text">Gerencie as salas de karaokê.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="<?= ADMIN_BASE_PATH ?>/sala/SalaList.php" class="btn btn-success">Gerenciar salas</a>
-                        <a href="<?= ADMIN_BASE_PATH ?>/sala/SalaForm.php" class="btn btn-outline-success">Responder</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/sala/SalaList.php" class="btn btn-success">Gerenciar Salas</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/sala/SalaForm.php" class="btn btn-outline-success">Nova Sala</a>
                     </div>
                 </div>
             </div>
@@ -56,13 +56,13 @@ $db->checkLogin();
 
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
-                <div class="card-body border-start border-success border-4">
-                    <h5 class="card-title text-success fw-bold">Materiais</h5>
-                    <p class="card-text">Gerencie os Materiais</p>
+                <div class="card-body border-start border-secondary border-4">
+                    <h5 class="card-title text-secondary fw-bold">Produtos</h5>
+                    <p class="card-text">Gerencie os produtos e equipamentos.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="<?= ADMIN_BASE_PATH ?>/material/MaterialList.php" class="btn btn-success">Gerenciar materiais</a>
-                        <a href="<?= ADMIN_BASE_PATH ?>/material/MaterialForm.php" class="btn btn-outline-success">Novo material</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/produto/ProdutoList.php" class="btn btn-secondary">Gerenciar Produtos</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/produto/ProdutoForm.php" class="btn btn-outline-secondary">Novo Produto</a>
                     </div>
                 </div>
             </div>
@@ -71,11 +71,12 @@ $db->checkLogin();
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
                 <div class="card-body border-start border-info border-4">
-                    <h5 class="card-title text-info fw-bold">Tempo</h5>
-                    <p class="card-text">Gerencie os horários</p>
+                    <h5 class="card-title text-info fw-bold">Reservas</h5>
+                    <p class="card-text">Gerencie as reservas de salas.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="<?= ADMIN_BASE_PATH ?>/tempo/TempoList.php" class="btn btn-info">Gerenciar Tempo</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/reserva/ReservaList.php" class="btn btn-info">Gerenciar Reservas</a>
+                        <a href="<?= ADMIN_BASE_PATH ?>/reserva/ReservaForm.php" class="btn btn-outline-info">Nova Reserva</a>
                     </div>
                 </div>
             </div>
@@ -90,6 +91,4 @@ $db->checkLogin();
     </div>
 </div>
 
-<?php
-include './footer.php';
-?>
+<?php include './footer.php'; ?>
