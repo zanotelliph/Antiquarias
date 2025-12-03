@@ -68,14 +68,14 @@ if ($listaSalas) {
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-white">
                 <?php if (!empty($dados)): ?>
                     <?php foreach ($dados as $item): ?>
-                        <tr>
-                            <th scope="row"><?= $item->id ?></th>
-                            <td><?= $salas[$item->sala_id] ?? '-' ?></td>
-                            <td><?= $item->data_hora_inicio ? date('d/m/Y H:i', strtotime($item->data_hora_inicio)) : '-' ?></td>
-                            <td><?= $item->data_hora_fim ? date('d/m/Y H:i', strtotime($item->data_hora_fim)) : '-' ?></td>
+                        <tr class="text-white">
+                            <th scope="row" class="text-white"><?= $item->id ?></th>
+                            <td class="text-white"><?= $salas[$item->sala_id] ?? '-' ?></td>
+                            <td class="text-white"><?= $item->data_hora_inicio ? date('d/m/Y H:i', strtotime($item->data_hora_inicio)) : '-' ?></td>
+                            <td class="text-white"><?= $item->data_hora_fim ? date('d/m/Y H:i', strtotime($item->data_hora_fim)) : '-' ?></td>
                             <td>
                                 <a href="./ReservaForm.php?id=<?= $item->id ?>" class="btn btn-warning btn-sm me-2">Editar</a>
                                 <a href="./ReservaList.php?action=delete&id=<?= $item->id ?>"

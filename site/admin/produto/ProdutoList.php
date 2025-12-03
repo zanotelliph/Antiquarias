@@ -61,17 +61,17 @@ if (!empty($_POST)) {
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-white">
                 <?php if (!empty($dados)): ?>
                     <?php foreach ($dados as $item): ?>
-                        <tr>
-                            <th scope="row"><?= $item->id ?></th>
-                            <td><?= $item->nome ?></td>
-                            <td><?= $item->tipo ?></td>
-                            <td><?= $item->quantidade ?></td>
-                            <td><?= $item->marca ?></td>
-                            <td><?= $item->modelo ?></td>
-                            <td>
+                        <tr class="text-white">
+                            <th scope="row" class="text-white"><?= $item->id ?></th>
+                            <td class="text-white"><?= $item->nome ?></td>
+                            <td class="text-white"><?= $item->tipo ?></td>
+                            <td class="text-white"><?= $item->quantidade ?></td>
+                            <td class="text-white"><?= $item->marca ?></td>
+                            <td class="text-white"><?= $item->modelo ?></td>
+                            <td class="text-white">
                                 <a href="./ProdutoForm.php?id=<?= $item->id ?>" class="btn btn-warning btn-sm">
                                     Editar
                                 </a>

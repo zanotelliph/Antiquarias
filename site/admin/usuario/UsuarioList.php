@@ -59,15 +59,15 @@ if (!empty($_POST)) {
                     <th scope="col">Ações</th>     
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-white">
                 <?php if (!empty($dados)): ?>
                     <?php foreach ($dados as $item): ?>
-                        <tr>
-                            <th scope="row"><?= $item->id ?></th>
-                            <td><?= $item->nome ?></td>
-                            <td><?= $item->telefone ?></td>
-                            <td><?= $item->email ?></td>
-                            <td><?= $item->login ?></td>     
+                        <tr class="text-white">
+                            <th scope="row" class="text-white"><?= $item->id ?></th>
+                            <td class="text-white"><?= $item->nome ?></td>
+                            <td class="text-white"><?= $item->telefone ?></td>
+                            <td class="text-white"><?= $item->email ?></td>
+                            <td class="text-white"><?= $item->login ?></td>     
                             <td>
                                 <a href="./UsuarioForm.php?id=<?= $item->id ?>" class="btn btn-warning btn-sm">Editar</a>
                                 <a href="./UsuarioList.php?action=delete&id=<?= $item->id ?>"

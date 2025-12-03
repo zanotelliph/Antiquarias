@@ -57,9 +57,14 @@
         }
 
         .form-control, .form-select {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
+            background: rgba(13, 2, 33, 0.8);
+            color: #ffffff;
             border: 1px solid #8a2be2;
+        }
+
+        .form-select option {
+            background: #0d0221;
+            color: #ffffff;
         }
 
         .form-control::placeholder {
@@ -93,6 +98,10 @@
         .table {
             color: #e0e0e0;
             --bs-table-bg: transparent;
+        }
+
+        .table td, .table th, .table tbody {
+            color: #ffffff !important;
         }
     </style>
 </head>

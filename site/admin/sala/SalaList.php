@@ -67,14 +67,14 @@ if ($listaUsuarios) {
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-white">
                 <?php if (!empty($dados)): ?>
                     <?php foreach ($dados as $item): ?>
-                        <tr>
-                            <th scope="row"><?= $item->id ?></th>
-                            <td><?= $item->nome ?></td>
-                            <td><?= $item->capacidade ?></td>
-                            <td><?= $usuarios[$item->usuario_id] ?? '-' ?></td>
+                        <tr class="text-white">
+                            <th scope="row" class="text-white"><?= $item->id ?></th>
+                            <td class="text-white"><?= $item->nome ?></td>
+                            <td class="text-white"><?= $item->capacidade ?></td>
+                            <td class="text-white"><?= $usuarios[$item->usuario_id] ?? '-' ?></td>
                             <td>
                                 <a href="./SalaForm.php?id=<?= $item->id ?>" class="btn btn-warning btn-sm me-2">Editar</a>
                                 <a href="./SalaList.php?action=delete&id=<?= $item->id ?>"

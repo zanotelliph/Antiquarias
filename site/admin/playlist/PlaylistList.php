@@ -57,16 +57,16 @@ if (!empty($_POST)) {
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-white">
                     <?php
                     if($dados) {
                         foreach ($dados as $item) {
-                            echo "<tr>
-                                <th scope='row'>$item->id</th>
-                                <td>$item->titulo</td>
-                                <td>$item->qtd_musicas</td>
-                                <td>$item->tempo_total</td>
-                                <td>$item->genero</td>
+                            echo "<tr class='text-white'>
+                                <th scope='row' class='text-white'>$item->id</th>
+                                <td class='text-white'>$item->titulo</td>
+                                <td class='text-white'>$item->qtd_musicas</td>
+                                <td class='text-white'>$item->tempo_total</td>
+                                <td class='text-white'>$item->genero</td>
                                 <td>
                                     <a href='./PlaylistForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a>
                                     <a href='./PlaylistList.php?action=delete&id=$item->id'

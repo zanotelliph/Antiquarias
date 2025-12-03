@@ -11,7 +11,7 @@ include __DIR__ . '/site/admin/db.class.php';
 <style>
 body {
     background: #0a0a0a;
-    color: #e0e0e0;
+    color: #ffffffff;
 }
 
 h3 {
@@ -30,13 +30,13 @@ h3 {
 
 .accordion-button:not(.collapsed) {
     background: #0ff22f33;
-    color: #fff;
+    color: #ffffffff;
     box-shadow: 0 0 15px #0ff;
 }
 
 .accordion-body {
     background: #0f0f0f;
-    color: #cfcfcf;
+    color: #ffffffff;
     border-left: 2px solid #0ff;
     border-right: 2px solid #0ff;
     box-shadow: inset 0 0 10px #0ff55f;
