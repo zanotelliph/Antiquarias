@@ -50,10 +50,10 @@
             text-shadow: 0 0 10px #b56bff;
         "
     >
-        © 2024 Antiquariais — Karaokê e Comida
+        © 2024 Antiquarias — Karaokê 
         <br>
-        <a class="text-light fw-bold text-decoration-none" href="https://antiquariais.com.br/" style="text-shadow: 0 0 10px #d4a5ff;">
-            antiquariais.com.br
+        <a class="text-light fw-bold text-decoration-none" href="https://Antiquarias.com.br/" style="text-shadow: 0 0 10px #d4a5ff;">
+            Antiquarias.com.br
         </a>
     </div>
 </footer>

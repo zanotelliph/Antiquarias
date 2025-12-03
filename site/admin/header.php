@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Antiquariais</title>
+    <title>Antiquarias</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -101,7 +101,7 @@
 
 <nav class="navbar navbar-expand-lg mb-4">
   <div class="container-fluid">
-    <a class="navbar-brand ms-4" href="<?= ADMIN_BASE_PATH ?>/main.php">ANTIQUARIAIS</a>
+    <a class="navbar-brand ms-4" href="<?= ADMIN_BASE_PATH ?>/main.php">Antiquarias</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
     </button>

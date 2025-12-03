@@ -21,7 +21,7 @@ if (!empty($_POST)) {
     $dados = $db->all();
 }
 
-// Criar array de usuários para lookup
+
 $usuarios = [];
 $listaUsuarios = $dbUsuario->all();
 if ($listaUsuarios) {

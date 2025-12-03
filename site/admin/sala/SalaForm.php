@@ -10,7 +10,7 @@ if (!empty($_GET['id'])) {
     $data = $db->find($_GET['id']);
 }
 
-// Buscar lista de usuários para o select
+
 $usuarios = $dbUsuario->all();
 
 if (!empty($_POST)) { 

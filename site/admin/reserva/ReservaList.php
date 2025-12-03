@@ -21,7 +21,7 @@ if (!empty($_POST)) {
     $dados = $db->all();
 }
 
-// Criar array de salas para lookup
+
 $salas = [];
 $listaSalas = $dbSala->all();
 if ($listaSalas) {

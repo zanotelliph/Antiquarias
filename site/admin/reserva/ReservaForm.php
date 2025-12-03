@@ -11,7 +11,7 @@ if (!empty($_GET['id'])) {
     $data = $db->find($_GET['id']);
 }
 
-// Buscar lista de salas para o select
+
 $salas = $dbSala->all();
 
 if (!empty($_POST)) { 
