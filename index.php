@@ -13,6 +13,9 @@ body {
     background: #0a0a0a;
     color: #ffffffff;
 }
+.msg {
+    background-color: rgba(255, 0, 255, 0.1);
+}
 
 h3 {
     color: #00f7ff;

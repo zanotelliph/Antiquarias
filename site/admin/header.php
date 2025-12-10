@@ -1,4 +1,9 @@
-<?php require_once __DIR__ . '/config.php'; ?>
+<?php 
+require_once __DIR__ . '/config.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!doctype html>
 <html lang="pt-br">
 
@@ -119,10 +124,25 @@
       <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto me-4">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="<?= ADMIN_BASE_PATH ?>/main.php">Menu Principal</a>
+          <a class="nav-link" href="<?= ADMIN_BASE_PATH ?>/usuario/UsuarioList.php">Usuários</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= ADMIN_BASE_PATH ?>/sala/SalaList.php">Salas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= ADMIN_BASE_PATH ?>/reserva/ReservaList.php">Reservas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= ADMIN_BASE_PATH ?>/playlist/PlaylistList.php">Playlists</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= ADMIN_BASE_PATH ?>/produto/ProdutoList.php">Produtos</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-4">
+       
         <li class="nav-item">
           <a class="nav-link" href="<?= ADMIN_BASE_PATH ?>/login.php?logout=true">Sair</a>
         </li>

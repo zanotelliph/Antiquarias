@@ -27,7 +27,7 @@ if (!empty($_POST)) {
             $_SESSION['login'] = $result->login;
             $_SESSION['nome'] = $result->nome;
 
-            echo "<div class='alert alert-success'>Sucesso! Redirecionando...</div>";
+            echo "<div id='msg 'class='alert alert-success'>Mandou bemmm, preparado para soltar a voz? Redirecionando...</div>";
             
             $redirectUrl = ADMIN_BASE_PATH . '/main.php';
             echo "<script>
@@ -35,7 +35,7 @@ if (!empty($_POST)) {
                   </script>";
             exit;
         } else {
-            echo "<div class='alert alert-danger'>Login ou senha incorretos</div>";
+            echo "<div class='alert alert-danger'>Desliga o autotune</div>";
         }
     }
 }
@@ -54,7 +54,7 @@ if (!empty($_POST)) {
         </div>
 
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-success">Entrar</button>
+            <button type="submit" class="btn btn-success"> Solta a voz🎤!!!</button>
         </div>
     </form>
 </div>
