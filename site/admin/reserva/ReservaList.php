@@ -4,6 +4,7 @@ include "../db.class.php";
 
 $db = new db('reserva', 'id');
 $dbSala = new db('sala', 'id');
+$dbUsuario = new db('usuario', 'id');
 $db->checkLogin();
 
 if (!empty($_GET['id']) && !empty($_GET['action']) && $_GET['action'] === 'delete') {
@@ -21,12 +22,21 @@ if (!empty($_POST)) {
     $dados = $db->all();
 }
 
-
+// Criar array de salas para lookup
 $salas = [];
 $listaSalas = $dbSala->all();
 if ($listaSalas) {
     foreach ($listaSalas as $s) {
         $salas[$s->id] = $s->nome;
+    }
+}
+
+// Criar array de usuários para lookup
+$usuarios = [];
+$listaUsuarios = $dbUsuario->all();
+if ($listaUsuarios) {
+    foreach ($listaUsuarios as $u) {
+        $usuarios[$u->id] = $u->nome;
     }
 }
 ?>
@@ -40,6 +50,7 @@ if ($listaSalas) {
                 <label class="form-label">Campo</label>
                 <select name="tipo" class="form-select">
                     <option value="sala_id">Sala</option>
+                    <option value="usuario_id">Usuário</option>
                     <option value="data_hora_inicio">Data Início</option>
                     <option value="data_hora_fim">Data Fim</option>
                 </select>
@@ -63,6 +74,7 @@ if ($listaSalas) {
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Sala</th>
+                    <th scope="col">Usuário</th>
                     <th scope="col">Data/Hora Início</th>
                     <th scope="col">Data/Hora Fim</th>
                     <th scope="col">Ações</th>
@@ -74,6 +86,7 @@ if ($listaSalas) {
                         <tr class="text-white">
                             <th scope="row" class="text-white"><?= $item->id ?></th>
                             <td class="text-white"><?= $salas[$item->sala_id] ?? '-' ?></td>
+                            <td class="text-white"><?= $usuarios[$item->usuario_id] ?? '-' ?></td>
                             <td class="text-white"><?= $item->data_hora_inicio ? date('d/m/Y H:i', strtotime($item->data_hora_inicio)) : '-' ?></td>
                             <td class="text-white"><?= $item->data_hora_fim ? date('d/m/Y H:i', strtotime($item->data_hora_fim)) : '-' ?></td>
                             <td>
@@ -86,7 +99,7 @@ if ($listaSalas) {
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" class="text-center">Nenhuma reserva cadastrada.</td>
+                        <td colspan="6" class="text-center">Nenhuma reserva cadastrada.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
@@ -95,4 +108,3 @@ if ($listaSalas) {
 </div>
 
 <?php include "../footer.php"; ?>
-

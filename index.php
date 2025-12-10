@@ -95,7 +95,7 @@ iframe {
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapse1" aria-expanded="false"
                             aria-controls="flush-collapse1">
-                            Karaokê com comida?
+                            Karaokê?
                         </button>
                     </h2>
                     <div id="flush-collapse1" class="accordion-collapse collapse" data-bs-parent="#a1">

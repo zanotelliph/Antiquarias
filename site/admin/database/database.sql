@@ -57,11 +57,14 @@ CREATE TABLE IF NOT EXISTS `sala` (
 CREATE TABLE IF NOT EXISTS `reserva` (
   `id` int NOT NULL AUTO_INCREMENT,
   `sala_id` int DEFAULT NULL,
+  `usuario_id` int DEFAULT NULL,
   `data_hora_inicio` datetime DEFAULT NULL,
   `data_hora_fim` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_reserva_sala` (`sala_id`),
-  CONSTRAINT `fk_reserva_sala` FOREIGN KEY (`sala_id`) REFERENCES `sala` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  KEY `fk_reserva_usuario` (`usuario_id`),
+  CONSTRAINT `fk_reserva_sala` FOREIGN KEY (`sala_id`) REFERENCES `sala` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_reserva_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

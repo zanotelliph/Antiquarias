@@ -103,6 +103,10 @@
         .table td, .table th, .table tbody {
             color: #ffffff !important;
         }
+
+        .card-text {
+            color: #ffffff !important;
+        }
     </style>
 </head>
 

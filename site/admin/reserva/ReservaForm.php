@@ -4,6 +4,7 @@ include "../db.class.php";
 
 $db = new db('reserva', 'id');
 $dbSala = new db('sala', 'id');
+$dbUsuario = new db('usuario', 'id');
 $data = null;
 $errors = [];
 
@@ -11,13 +12,18 @@ if (!empty($_GET['id'])) {
     $data = $db->find($_GET['id']);
 }
 
-
+// Buscar lista de salas e usuários para os selects
 $salas = $dbSala->all();
+$usuarios = $dbUsuario->all();
 
 if (!empty($_POST)) { 
     try {
         if (empty($_POST['sala_id'])) {
             $errors[] = 'A sala é obrigatória.';
+        }
+
+        if (empty($_POST['usuario_id'])) {
+            $errors[] = 'O usuário é obrigatório.';
         }
 
         if (empty($_POST['data_hora_inicio'])) {
@@ -30,7 +36,8 @@ if (!empty($_POST)) {
 
         if (empty($errors)) {
             $payload = [
-                'sala_id'         => $_POST['sala_id'],
+                'sala_id'          => $_POST['sala_id'],
+                'usuario_id'       => $_POST['usuario_id'],
                 'data_hora_inicio' => $_POST['data_hora_inicio'],
                 'data_hora_fim'    => $_POST['data_hora_fim'],
             ];
@@ -75,7 +82,7 @@ if (!empty($data->data_hora_fim)) {
         <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
         <div class="row g-3">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label class="form-label">Sala</label>
                 <select class="form-select" name="sala_id" required>
                     <option value="">Selecione uma sala...</option>
@@ -89,12 +96,26 @@ if (!empty($data->data_hora_fim)) {
                 </select>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
+                <label class="form-label">Usuário</label>
+                <select class="form-select" name="usuario_id" required>
+                    <option value="">Selecione um usuário...</option>
+                    <?php if (!empty($usuarios)): ?>
+                        <?php foreach ($usuarios as $usuario): ?>
+                            <option value="<?= $usuario->id ?>" <?= ($data->usuario_id ?? '') == $usuario->id ? 'selected' : '' ?>>
+                                <?= $usuario->nome ?>
+                            </option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+            </div>
+
+            <div class="col-md-6">
                 <label class="form-label">Data/Hora Início</label>
                 <input class="form-control" type="datetime-local" name="data_hora_inicio" value="<?= $dataHoraInicioValue ?>" required>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label class="form-label">Data/Hora Fim</label>
                 <input class="form-control" type="datetime-local" name="data_hora_fim" value="<?= $dataHoraFimValue ?>" required>
             </div>
@@ -111,4 +132,3 @@ if (!empty($data->data_hora_fim)) {
 </div>
 
 <?php include "../footer.php"; ?>
-
